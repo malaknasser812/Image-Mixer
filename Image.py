@@ -11,13 +11,15 @@ logging.basicConfig(filename="Image.log",level=logging.INFO , format='%(levelnam
 
 
 class Image(QtWidgets.QWidget):
-    def __init__(self, image_label,parent=None):
+    # Class variable to store instances of Image
+    instances = []
+    def __init__(self, image,parent=None):
         super().__init__(parent)
         self.image = None
         self.width,self.height = 0,0
-        self.image_label = image_label 
-
-
+        self.image_label = image 
+        # Append each instance to the class variable
+        Image.instances.append(self)
 
     def Browse(self):
         image_path, _ = QtWidgets.QFileDialog.getOpenFileName(
@@ -36,6 +38,8 @@ class Image(QtWidgets.QWidget):
             # Update self.image after loading the first image
             self.image = new_image
             self.width, self.height = new_width, new_height
+            # Adjust sizes after updating the display
+            self.adjust_sizes()
 
                 
     def update_display(self,image):
@@ -45,14 +49,14 @@ class Image(QtWidgets.QWidget):
         self.image_label.setPixmap(pixmap)
 
     def adjust_sizes(self):
-    # Check if there are images in the viewports
-        if any(image.image is not None for image in self.images):
+    # Check if there are images in the instances list
+        if any(image.image is not None for image in Image.instances):
             # Find the smallest width and height among all images
-            min_width = min(image.width for image in self.images if image.image is not None)
-            min_height = min(image.height for image in self.images if image.image is not None)
+            min_width = min(image.width for image in Image.instances if image.image is not None)
+            min_height = min(image.height for image in Image.instances if image.image is not None)
 
             # Resize images in all instances to the smallest size
-            for image in self.images:
+            for image in Image.instances:
                 if image.image is not None:
                     new_image = image.image.scaled(min_width, min_height, Qt.AspectRatioMode.KeepAspectRatio)
                     image.update_display(new_image)

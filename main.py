@@ -44,6 +44,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def double_click_event(self, event, image_instance):
         if event.button() == Qt.LeftButton:
             image_instance.Browse()
+
+        
     
 def main():
     app = QtWidgets.QApplication(sys.argv)
