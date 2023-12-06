@@ -109,6 +109,18 @@
                <layout class="QGridLayout" name="gridLayout_2">
                 <item row="0" column="0">
                  <widget class="QLabel" name="image1">
+                  <property name="minimumSize">
+                   <size>
+                    <width>400</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>450</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::WinPanel</enum>
                   </property>
@@ -133,20 +145,7 @@
                </property>
                <layout class="QGridLayout" name="gridLayout_3">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="ft_component1">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <widget class="QGraphicsView" name="ft_comp_1"/>
                 </item>
                </layout>
               </widget>
@@ -250,6 +249,12 @@
                <layout class="QGridLayout" name="gridLayout_37">
                 <item row="0" column="0">
                  <widget class="QLabel" name="image2">
+                  <property name="minimumSize">
+                   <size>
+                    <width>400</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::WinPanel</enum>
                   </property>
@@ -274,20 +279,7 @@
                </property>
                <layout class="QGridLayout" name="gridLayout_38">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="label_33">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <widget class="QGraphicsView" name="ft_comp_2"/>
                 </item>
                </layout>
               </widget>
@@ -391,6 +383,12 @@
                <layout class="QGridLayout" name="gridLayout_25">
                 <item row="0" column="0">
                  <widget class="QLabel" name="image3">
+                  <property name="minimumSize">
+                   <size>
+                    <width>400</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::WinPanel</enum>
                   </property>
@@ -415,20 +413,7 @@
                </property>
                <layout class="QGridLayout" name="gridLayout_26">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="ft_component3">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <widget class="QGraphicsView" name="ft_comp_3"/>
                 </item>
                </layout>
               </widget>
@@ -532,6 +517,12 @@
                <layout class="QGridLayout" name="gridLayout_33">
                 <item row="0" column="0">
                  <widget class="QLabel" name="image4">
+                  <property name="minimumSize">
+                   <size>
+                    <width>400</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="frameShape">
                    <enum>QFrame::WinPanel</enum>
                   </property>
@@ -556,20 +547,7 @@
                </property>
                <layout class="QGridLayout" name="gridLayout_34">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="ft_component4">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <widget class="QGraphicsView" name="ft_comp_4"/>
                 </item>
                </layout>
               </widget>
@@ -612,6 +590,22 @@
          </widget>
         </item>
         <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>200</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <widget class="QGroupBox" name="groupBox_7">
           <property name="title">
            <string/>
@@ -641,20 +635,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_5">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="output1">
-                    <property name="frameShape">
-                     <enum>QFrame::WinPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Sunken</enum>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="scaledContents">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
+                   <widget class="QGraphicsView" name="output1"/>
                   </item>
                  </layout>
                 </widget>
@@ -683,20 +664,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_6">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="output2">
-                    <property name="frameShape">
-                     <enum>QFrame::WinPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Sunken</enum>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="scaledContents">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
+                   <widget class="QGraphicsView" name="output2"/>
                   </item>
                  </layout>
                 </widget>
@@ -704,6 +672,22 @@
               </layout>
              </item>
             </layout>
+           </item>
+           <item row="0" column="1">
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>200</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
