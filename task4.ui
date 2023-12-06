@@ -13,6 +13,79 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">
+QWidget {
+    font-size: 11px;
+}
+
+QTableView {
+    font-size: 10px;
+    alternate-background-color: #EEEEFF;
+}
+
+Browser QPushButton {
+    font-size: 10px;
+    min-width: 10px;
+}
+
+ColorButton::enabled {
+    border: 1px solid #444444;
+}
+
+ColorButton::disabled {
+    border: 1px solid #AAAAAA;
+}
+
+
+Browser QGroupBox {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #E0E0E0, stop: 1 #FFFFFF);
+    border: 2px solid #999999;
+    border-radius: 5px;
+    margin-top: 1ex; /* leave space at the top for the title */
+    font-size: 13px;
+    color: black;
+}
+
+Browser QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center; /* position at the top center */
+    padding: 0 3px;
+    font-size: 13px;
+    color: black;
+}
+
+PluginItem {
+    border: 2px solid black;
+    background: white;
+}
+
+
+PluginItem Frame {
+    background: #CCCCCC;
+}
+
+
+TabButton {
+    border: 1px solid #8f8f91;
+    border-radius: 2px;
+    padding: 3px;
+    min-width: 120px;
+}
+
+TabButton::checked {
+    background-color: qlineargradient(x1: 0, y1: 0 , x2: 0, y2: 1,
+                                      stop: 0 #9a9b9e, stop: 1 #babbbe);
+}
+
+
+TabButton::pressed {
+    background-color: qlineargradient(x1: 0, y1: 0 , x2: 0, y2: 1,
+                                      stop: 0 #9a9b9e, stop: 1 #babbbe);
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_11">
     <item row="0" column="0">
@@ -565,7 +638,7 @@
          <widget class="QGroupBox" name="groupBox_8">
           <property name="minimumSize">
            <size>
-            <width>100</width>
+            <width>300</width>
             <height>0</height>
            </size>
           </property>
@@ -588,22 +661,6 @@
            </item>
           </layout>
          </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>200</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_7">
@@ -673,21 +730,96 @@
              </item>
             </layout>
            </item>
-           <item row="0" column="1">
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>200</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_9">
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="gridLayout_12">
+             <item row="0" column="0">
+              <widget class="QComboBox" name="comboBox_2">
+               <item>
+                <property name="text">
+                 <string>Image 1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Image 2</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Image 3</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Image 4</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="text">
+                  <string>Brightness</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSlider" name="horizontalSlider">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="2" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Contrast</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QSlider" name="horizontalSlider_2">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -704,7 +836,7 @@
      <x>0</x>
      <y>0</y>
      <width>1234</width>
-     <height>26</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>
