@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>4095</width>
-    <height>4095</height>
+    <width>1234</width>
+    <height>894</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -641,7 +641,13 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_5">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="label">
+                   <widget class="QLabel" name="output1">
+                    <property name="frameShape">
+                     <enum>QFrame::WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
@@ -677,7 +683,13 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_6">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="label_2">
+                   <widget class="QLabel" name="output2">
+                    <property name="frameShape">
+                     <enum>QFrame::WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
@@ -707,7 +719,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>4095</width>
+     <width>1234</width>
      <height>26</height>
     </rect>
    </property>
