@@ -11,7 +11,7 @@ from scipy.interpolate import interp1d
 import pyqtgraph as pg
 from matplotlib.figure import Figure
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QFileDialog, QMessageBox, QGraphicsScene ,QLabel , QHBoxLayout
+from PyQt5.QtWidgets import QFileDialog,QDialog, QGraphicsScene ,QLabel , QHBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from PyQt5 import QtWidgets, uic 
 from matplotlib.pyplot import figure
@@ -23,6 +23,11 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 from Image import Image as ig
 
+class MyDialog(QtWidgets.QDialog):
+    def __init__(self):
+        super(MyDialog, self).__init__()
+        # Load the UI Page
+        uic.loadUi(r'mixer.ui', self)
 
 class MainWindow(QtWidgets.QMainWindow):
 
@@ -31,6 +36,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Load the UI Page
         uic.loadUi(r'task4.ui', self)
+
+        #button connection
+        self.component_btn.clicked.connect(self.open_dialog)
 
 
     # Create a list to store Image instances and associated QLabel objects
@@ -44,6 +52,13 @@ class MainWindow(QtWidgets.QMainWindow):
     def double_click_event(self, event, image_instance):
         if event.button() == Qt.LeftButton:
             image_instance.Browse()
+
+    def open_dialog(self):
+        # Create an instance of the custom dialog
+        dialog = MyDialog()
+
+        # Show the dialog
+        dialog.exec_()
 
         
     

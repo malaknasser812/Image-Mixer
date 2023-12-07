@@ -127,7 +127,7 @@ TabButton::pressed {
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="comboBox">
+               <widget class="QComboBox" name="ft_component_combo1">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -267,7 +267,7 @@ TabButton::pressed {
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="comboBox_11">
+               <widget class="QComboBox" name="ft_component_combo2">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -401,7 +401,7 @@ TabButton::pressed {
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="comboBox_8">
+               <widget class="QComboBox" name="ft_component_combo3">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -527,15 +527,8 @@ TabButton::pressed {
               <enum>QFrame::Raised</enum>
              </property>
              <layout class="QGridLayout" name="gridLayout_32">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_28">
-                <property name="text">
-                 <string>Image 4</string>
-                </property>
-               </widget>
-              </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="comboBox_10">
+               <widget class="QComboBox" name="ft_component_combo4">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -568,6 +561,13 @@ TabButton::pressed {
                   <string>Imaginary</string>
                  </property>
                 </item>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string>Image 4</string>
+                </property>
                </widget>
               </item>
              </layout>
@@ -653,9 +653,16 @@ TabButton::pressed {
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_6">
+            <widget class="QPushButton" name="component_btn">
              <property name="text">
-              <string>mixxxxx</string>
+              <string>Components Mixer</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="region_btn">
+             <property name="text">
+              <string>region mixer</string>
              </property>
             </widget>
            </item>
@@ -793,7 +800,7 @@ TabButton::pressed {
                 </widget>
                </item>
                <item>
-                <widget class="QSlider" name="horizontalSlider">
+                <widget class="QSlider" name="bright_slider">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -811,7 +818,7 @@ TabButton::pressed {
                 </widget>
                </item>
                <item>
-                <widget class="QSlider" name="horizontalSlider_2">
+                <widget class="QSlider" name="contrast_slider">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
