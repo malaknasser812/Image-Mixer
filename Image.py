@@ -5,69 +5,119 @@ from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 import numpy as np
 import logging
+import cv2
 
 logging.basicConfig(filename="Image.log",level=logging.INFO , format='%(levelname)s: %(message)s')
 
 
 
 class Image(QtWidgets.QWidget):
-    # Class variable to store instances of Image
-    instances = []
-    def __init__(self, image,parent=None):
+    instances =[]
+    def __init__(self, image,ft_image, combos = None, parent=None):
         super().__init__(parent)
         self.image = None
         self.width,self.height = 0,0
-        self.image_label = image 
+        self.image_label = image
+        self.ft_components = {}
+        self.ft_image_label = ft_image
+        self.magnitude_shift = None
+        self.phase_shift = None
+        self.real_shift = None
+        self.imaginary_shift = None
+        self.combos = combos if combos is not None else []  # Initialize as an empty list if not provided
         # Append each instance to the class variable
         Image.instances.append(self)
+
 
     def Browse(self):
         image_path, _ = QtWidgets.QFileDialog.getOpenFileName(
             None, 'Open Image File', './', filter="Image File (*.png *.jpg *.jpeg)")
         if image_path:
-            new_image = QImage(image_path)
-            new_width, new_height = new_image.width(), new_image.height()
-            if self.image is not None and (new_width, new_height) != (self.width, self.height):
-                # Sizes are different, apply adjust_image_sizes function
+            # Load the image using cv2
+            cv_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+            if cv_image is not None:
+                new_height, new_width = cv_image.shape[:2]
+                if self.image is not None and (new_width, new_height) != (self.width, self.height):
+                    # Sizes are different, apply adjust_image_sizes function
+                    self.adjust_sizes()
+                # Update display using cv2 image
+                self.update_display(cv_image)
+                # Update self.image after loading the first image
+                self.image = cv_image
+                self.width, self.height = new_width, new_height
+                # Adjust sizes after updating the display
                 self.adjust_sizes()
-            if new_image.format() == QImage.Format.Format_Grayscale8:
-                self.update_display(new_image)
-            else:
-                new_image = new_image.convertToFormat(QImage.Format.Format_Grayscale8)
-                self.update_display(new_image)
-            # Update self.image after loading the first image
-            self.image = new_image
-            self.width, self.height = new_width, new_height
-            # Adjust sizes after updating the display
-            self.adjust_sizes()
 
-                
-    def update_display(self,image):
-        # self.image_label.setScaledContents(True)
-        self.image = image
-        pixmap = QPixmap.fromImage(self.image)
-        self.image_label.setPixmap(pixmap)
+    def update_display(self, cv_image):
+        if cv_image is not None:
+            # Update self.image with the cv_image
+            self.image = cv_image
+            # Convert cv_image to QPixmap
+            height, width = cv_image.shape[:2]
+            bytes_per_line = width
+            # Create QImage from cv_image
+            q_image = QImage(cv_image.data, width, height, bytes_per_line, QImage.Format.Format_Grayscale8)
+            # Convert QImage to QPixmap and set the display
+            q_pixmap = QPixmap.fromImage(q_image)
+            self.image_label.setPixmap(q_pixmap)
 
     def adjust_sizes(self):
-    # Check if there are images in the instances list
-        if any(image.image is not None for image in Image.instances):
+        # Check if there are images in the instances list
+        valid_images = [image for image in Image.instances if image.image is not None]
+        if valid_images:
             # Find the smallest width and height among all images
-            min_width = min(image.width for image in Image.instances if image.image is not None)
-            min_height = min(image.height for image in Image.instances if image.image is not None)
-
+            min_width = min(image.width for image in valid_images)
+            min_height = min(image.height for image in valid_images)
             # Resize images in all instances to the smallest size
-            for image in Image.instances:
-                if image.image is not None:
-                    new_image = image.image.scaled(min_width, min_height, Qt.AspectRatioMode.KeepAspectRatio)
-                    image.update_display(new_image)
+            for image in valid_images:
+                # Resize using cv2
+                resized_image = cv2.resize(image.image, (min_width, min_height))
+                # Update the image
+                image.update_display(resized_image)
+                # Resize the FT component image using QPixmap
+                if image.ft_image_label.pixmap() is not None:
+                    ft_pixmap = image.ft_image_label.pixmap().scaled(min_width, min_height, Qt.KeepAspectRatio)
+                    image.ft_image_label.setPixmap(ft_pixmap)
 
+    def Calculations(self):
+            if self.image is not None:
+                # Convert uint8 array to float64
+                image_array_float = self.image.astype(np.float64)
+                # ft_image = np.fft.fft2(image_array_float)
+                # # Shift zero frequency components to the center
+                # ft_image_shifted = np.fft.fftshift(ft_image)
+                # # Calculate magnitude, phase, real, and imaginary components
+                # self.magnitude_shift = np.abs(ft_image_shifted)
+                # self.phase_shift = np.angle(ft_image_shifted)
+                # self.real_shift = np.real(ft_image_shifted)
+                # self.imaginary_shift = np.imag(ft_image_shifted)
+                self.dft = np.fft.fft2(image_array_float)
+                self.dft_shift = np.fft.fftshift(self.dft)
+                self.magnitude_shift = (20*np.log(np.abs(self.dft_shift))).astype(np.uint8)
+                self.phase_shift = (np.angle(self.dft_shift)).astype(np.uint8)
+                self.real_shift = (20*np.log(np.real(self.dft_shift))).astype(np.uint8)
+                self.imaginary_shift = (np.imag(self.dft_shift)).astype(np.uint8)
+                self.ft_components = {
+                    "FT Magnitude": self.magnitude_shift,
+                    "FT Phase": self.phase_shift,
+                    "FT Real Component": self.real_shift,
+                    "FT Imaginary Component": self.imaginary_shift
+                    }
 
-
-    def Calculations (self):
-        if self.image != None :
-            buffer = self.image.bits().asarray().data
-            # Reshape the array to match the image dimensions
-            image_array = (np.frombuffer(buffer, dtype=np.uint8)).T
+    def check_combo(self, index):
+        self.Calculations()
+        selected_combo = self.combos[index].currentText()
+        if selected_combo in self.ft_components:
+            selected_component = self.ft_components[selected_combo]
+            for key, value in self.ft_components.items():
+                if np.array_equal(value, selected_component):
+                    # Convert the NumPy array to QPixmap
+                    q_pixmap = QPixmap.fromImage(QImage(value.data.tobytes(), value.shape[1], value.shape[0], QImage.Format_Grayscale8))
+                    # Convert QPixmap to NumPy array
+                    q_image = q_pixmap.toImage()
+                    # Convert QImage to QPixmap and set the display
+                    q_pixmap = QPixmap.fromImage(q_image)
+                    self.ft_image_label.setPixmap(q_pixmap)
 
 
     def process(self, img_mag, img_phase, img_real, img_imag):
