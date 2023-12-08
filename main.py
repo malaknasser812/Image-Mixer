@@ -70,11 +70,29 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def open_dialog(self):
         # Create an instance of the custom dialog
-        dialog = MyDialog()
+        Mixer = MyDialog()
 
         # Show the dialog
-        dialog.exec_()
+        Mixer.exec_()
 
+        self.output_channels_controlers = {
+            'Output 1': {
+                'select1 img': '',
+                'select2 img': '',
+                'slider1 val': 0,
+                'slider2 va;': 0,
+                'type1': '',
+                'type2': ''
+            },
+            'Output 2': {
+                'select1 img': '',
+                'select2 img': '',
+                'slider1 val': 0,
+                'slider2 val': 0,
+                'type1': '',
+                'type2': ''
+            }
+        }
         
     
 def main():
