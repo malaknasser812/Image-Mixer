@@ -124,6 +124,7 @@ class Image(QtWidgets.QWidget):
                     q_pixmap = QPixmap.fromImage(q_image)
                     self.ft_image_label.setPixmap(q_pixmap)
 
+
     def process(self, img_mag, img_phase, img_real, img_imag):
         mag_mask = np.ones_like(img_mag)
         phase_mask = np.zeros_like(img_phase)
