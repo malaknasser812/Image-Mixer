@@ -24,6 +24,7 @@ class Image(QtWidgets.QWidget):
         self.phase_shift = None
         self.real_shift = None
         self.imaginary_shift = None
+        self.calculated = {}
         self.combos = combos if combos is not None else []  # Initialize as an empty list if not provided
         # Append each instance to the class variable
         Image.instances.append(self)
@@ -79,7 +80,7 @@ class Image(QtWidgets.QWidget):
                     ft_pixmap = image.ft_image_label.pixmap().scaled(min_width, min_height, Qt.KeepAspectRatio)
                     image.ft_image_label.setPixmap(ft_pixmap)
 
-    def Calculations(self):
+    def Calculations(self, index):
             if self.image is not None:
                 # Convert uint8 array to float64
                 image_array_float = self.image.astype(np.float64)
@@ -101,20 +102,22 @@ class Image(QtWidgets.QWidget):
 
                 self.magnitude_shift = (20 * np.log(np.abs(self.dft_shift) + epsilon)).astype(np.uint8)
                 self.real_shift = (20 * np.log(np.abs(np.real(self.dft_shift)) + epsilon)).astype(np.uint8)
+                self.calculated = {index : True}
 
-                self.ft_components = {
-                    "FT Magnitude": self.magnitude_shift,
+                self.ft_components = { index :
+                    {"FT Magnitude": self.magnitude_shift,
                     "FT Phase": self.phase_shift,
                     "FT Real Component": self.real_shift,
-                    "FT Imaginary Component": self.imaginary_shift
+                    "FT Imaginary Component": self.imaginary_shift}
                     }
 
     def check_combo(self, index):
-        self.Calculations()
+        if index not in self.calculated :
+            self.Calculations(index)
         selected_combo = self.combos[index].currentText()
-        if selected_combo in self.ft_components:
-            selected_component = self.ft_components[selected_combo]
-            for _, value in self.ft_components.items():
+        if selected_combo in self.ft_components[index]:
+            selected_component = self.ft_components[index][selected_combo]
+            for _ , value in self.ft_components[index].items():
                 if np.array_equal(value, selected_component):
                     # Convert the NumPy array to QPixmap
                     q_pixmap = QPixmap.fromImage(QImage(value.data.tobytes(), value.shape[1], value.shape[0], QImage.Format_Grayscale8))
