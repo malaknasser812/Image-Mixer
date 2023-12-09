@@ -84,6 +84,21 @@ class Image(QtWidgets.QWidget):
             if self.image is not None:
                 # Convert uint8 array to float64
                 image_array_float = self.image.astype(np.float64)
+                self.dft = np.fft.fft2(image_array_float)
+                self.dft_shift = np.fft.fftshift(self.dft)
+                epsilon = 1e-10  # Small constant to avoid log(0)
+                self.magnitude_shift = (20 * np.log(np.abs(self.dft_shift) + epsilon)).astype(np.uint8)
+                self.phase_shift = (np.angle(self.dft_shift)).astype(np.uint8)
+                self.real_shift = (20 * np.log(np.abs(np.real(self.dft_shift)) + epsilon)).astype(np.uint8)
+                self.imaginary_shift = (np.imag(self.dft_shift)).astype(np.uint8)
+                self.calculated = {index : True}
+                self.ft_components = { index :
+                    {"FT Magnitude": self.magnitude_shift,
+                    "FT Phase": self.phase_shift,
+                    "FT Real": self.real_shift,
+                    "FT Imaginary": self.imaginary_shift}
+                    }
+                
                 # ft_image = np.fft.fft2(image_array_float)
                 # # Shift zero frequency components to the center
                 # ft_image_shifted = np.fft.fftshift(ft_image)
@@ -92,24 +107,8 @@ class Image(QtWidgets.QWidget):
                 # self.phase_shift = np.angle(ft_image_shifted)
                 # self.real_shift = np.real(ft_image_shifted)
                 # self.imaginary_shift = np.imag(ft_image_shifted)
-                self.dft = np.fft.fft2(image_array_float)
-                self.dft_shift = np.fft.fftshift(self.dft)
                 # self.magnitude_shift = (20*np.log(np.abs(self.dft_shift))).astype(np.uint8)
-                self.phase_shift = (np.angle(self.dft_shift)).astype(np.uint8)
                 # self.real_shift = (20*np.log(np.real(self.dft_shift))).astype(np.uint8)
-                self.imaginary_shift = (np.imag(self.dft_shift)).astype(np.uint8)
-                epsilon = 1e-10  # Small constant to avoid log(0)
-
-                self.magnitude_shift = (20 * np.log(np.abs(self.dft_shift) + epsilon)).astype(np.uint8)
-                self.real_shift = (20 * np.log(np.abs(np.real(self.dft_shift)) + epsilon)).astype(np.uint8)
-                self.calculated = {index : True}
-
-                self.ft_components = { index :
-                    {"FT Magnitude": self.magnitude_shift,
-                    "FT Phase": self.phase_shift,
-                    "FT Real ": self.real_shift,
-                    "FT Imaginary ": self.imaginary_shift}
-                    }
 
     def check_combo(self, index):
         if index not in self.calculated :
