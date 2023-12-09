@@ -39,16 +39,16 @@ class MainWindow(QtWidgets.QMainWindow):
 
         image_graphs = [self.image1, self.image2, self.image3, self.image4]
         ft_image_graphs = [self.ft_compo_1, self.ft_compo_2, self.ft_compo_3, self.ft_compo_4]
-        self.combos = [self.ft_component_combo1, self.ft_component_combo2, self.ft_component_combo3, self.ft_component_combo4]
+        self.combos = [self.ft_combo1, self.ft_combo2, self.ft_combo3, self.ft_combo4]
         # Create a list to store Image instances and associated QLabel objects
         self.images = [ig(graph, ft_image, self.combos) for graph, ft_image in zip(image_graphs, ft_image_graphs)]
 
         #Connections
         # Connect combobox signals to the corresponding check_combo method
-        self.ft_component_combo1.activated.connect(lambda: self.combo_activated(0))
-        self.ft_component_combo2.activated.connect(lambda: self.combo_activated(1))
-        self.ft_component_combo3.activated.connect(lambda: self.combo_activated(2))
-        self.ft_component_combo4.activated.connect(lambda: self.combo_activated(3))
+        self.ft_combo1.activated.connect(lambda: self.combo_activated(0))
+        self.ft_combo2.activated.connect(lambda: self.combo_activated(1))
+        self.ft_combo3.activated.connect(lambda: self.combo_activated(2))
+        self.ft_combo4.activated.connect(lambda: self.combo_activated(3))
         # Connect double-click events to each QLabel using a loop
         for label, image_instance in zip(image_graphs, self.images):
             label.mouseDoubleClickEvent = lambda event, instance=image_instance: self.double_click_event(event, instance)

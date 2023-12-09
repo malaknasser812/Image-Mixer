@@ -107,8 +107,8 @@ class Image(QtWidgets.QWidget):
                 self.ft_components = { index :
                     {"FT Magnitude": self.magnitude_shift,
                     "FT Phase": self.phase_shift,
-                    "FT Real Component": self.real_shift,
-                    "FT Imaginary Component": self.imaginary_shift}
+                    "FT Real ": self.real_shift,
+                    "FT Imaginary ": self.imaginary_shift}
                     }
 
     def check_combo(self, index):

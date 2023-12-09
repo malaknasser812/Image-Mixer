@@ -127,7 +127,7 @@ TabButton::pressed {
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="ft_component_combo1">
+               <widget class="QComboBox" name="ft_combo1">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -142,22 +142,22 @@ TabButton::pressed {
                 </property>
                 <item>
                  <property name="text">
-                  <string>Magnitude</string>
+                  <string>FT Magnitude</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Phase</string>
+                  <string>FT Phase</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Real</string>
+                  <string>FT Real</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Imaginary</string>
+                  <string>FT Imaginary</string>
                  </property>
                 </item>
                </widget>
@@ -274,7 +274,7 @@ TabButton::pressed {
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="ft_component_combo2">
+               <widget class="QComboBox" name="ft_combo2">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -289,22 +289,22 @@ TabButton::pressed {
                 </property>
                 <item>
                  <property name="text">
-                  <string>Magnitude</string>
+                  <string>FT Magnitude</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Phase</string>
+                  <string>FT Phase</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Real</string>
+                  <string>FT Real</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Imaginary</string>
+                  <string>FT Imaginary</string>
                  </property>
                 </item>
                </widget>
@@ -415,7 +415,7 @@ TabButton::pressed {
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QComboBox" name="ft_component_combo3">
+               <widget class="QComboBox" name="ft_combo3">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -430,22 +430,22 @@ TabButton::pressed {
                 </property>
                 <item>
                  <property name="text">
-                  <string>Magnitude</string>
+                  <string>FT Magnitude</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Phase</string>
+                  <string>FT Phase</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Real</string>
+                  <string>FT Real</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Imaginary</string>
+                  <string>FT Imaginary</string>
                  </property>
                 </item>
                </widget>
@@ -555,7 +555,7 @@ TabButton::pressed {
              </property>
              <layout class="QGridLayout" name="gridLayout_32">
               <item row="0" column="1">
-               <widget class="QComboBox" name="ft_component_combo4">
+               <widget class="QComboBox" name="ft_combo4">
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -570,22 +570,22 @@ TabButton::pressed {
                 </property>
                 <item>
                  <property name="text">
-                  <string>Magnitude</string>
+                  <string>FT Magnitude</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Phase</string>
+                  <string>FT Phase</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Real</string>
+                  <string>FT Real</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>Imaginary</string>
+                  <string>FT Imaginary</string>
                  </property>
                 </item>
                </widget>
@@ -733,7 +733,17 @@ TabButton::pressed {
                  </property>
                  <layout class="QGridLayout" name="gridLayout_5">
                   <item row="0" column="0">
-                   <widget class="QGraphicsView" name="output1"/>
+                   <widget class="QLabel" name="output1">
+                    <property name="frameShape">
+                     <enum>QFrame::WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
@@ -762,7 +772,17 @@ TabButton::pressed {
                  </property>
                  <layout class="QGridLayout" name="gridLayout_6">
                   <item row="0" column="0">
-                   <widget class="QGraphicsView" name="output2"/>
+                   <widget class="QLabel" name="output2">
+                    <property name="frameShape">
+                     <enum>QFrame::WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
