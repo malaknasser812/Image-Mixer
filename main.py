@@ -17,6 +17,7 @@ import sys
 import matplotlib
 matplotlib.use('Qt5Agg')
 from Image import Image as ig
+from PyQt5.QtGui import QPixmap, QImage 
 
 class MyDialog(QtWidgets.QDialog):
     def __init__(self):
@@ -33,12 +34,16 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Load the UI Page
         uic.loadUi(r'task4.ui', self)
-
+        #some variabels assosiated with gragging event
+        self.delta = 10
+        self.setMouseTracking(True)
+        self.mousePressPosition = None
+        self.mouseMovePosition = None
         #button connection
         self.component_btn.clicked.connect(self.open_dialog)
 
-        image_graphs = [self.image1, self.image2, self.image3, self.image4]
-        ft_image_graphs = [self.ft_compo_1, self.ft_compo_2, self.ft_compo_3, self.ft_compo_4]
+        image_graphs = [self.image1, self.image2, self.image3, self.image4] #this is a list of qlabel widgets
+        ft_image_graphs = [self.ft_compo_1, self.ft_compo_2, self.ft_compo_3, self.ft_compo_4]# a list of images of the ft components
         self.combos = [self.ft_combo1, self.ft_combo2, self.ft_combo3, self.ft_combo4]
         # Create a list to store Image instances and associated QLabel objects
         self.images = [ig(graph, ft_image, self.combos) for graph, ft_image in zip(image_graphs, ft_image_graphs)]
@@ -51,11 +56,67 @@ class MainWindow(QtWidgets.QMainWindow):
         self.ft_combo4.activated.connect(lambda: self.combo_activated(3))
         # Connect double-click events to each QLabel using a loop
         for label, image_instance in zip(image_graphs, self.images):
+            label.mousePressEvent = lambda event, label_widget=label: self.mousePressEvent(event,label_widget)
+            label.mouseMoveEvent = lambda event, label_widget=label: self.mouseMoveEvent(event,label_widget)
+            label.mouseReleaseEvent = lambda event, instance=image_instance: self.mouseReleaseEvent(event,instance)
+
+        for label, image_instance in zip(image_graphs, self.images):
             label.mouseDoubleClickEvent = lambda event, instance=image_instance: self.double_click_event(event, instance)
+            
+            
+
 
     def double_click_event(self, event, image_instance):
         if event.button() == Qt.LeftButton:
             image_instance.Browse()
+
+
+
+
+# just to calculate the initial press position
+
+
+    def mousePressEvent(self, event,label):
+        if event.button() == Qt.LeftButton:
+            label.mousePressPosition = event.globalPos()
+            label.mouseMovePosition = event.globalPos()
+    def mouseMoveEvent(self, event,label):
+        if event.buttons() == Qt.LeftButton:
+            # Calculate the delta position
+            delta = event.globalPos() - label.mouseMovePosition
+            delta_x = float(delta.x())  # Convert x component to float
+            self.delta =delta_x
+            # Move the label to the left
+            #label.move(label.x() - delta.x(), label.y())
+            label.mouseMovePosition = event.globalPos()
+            print(self.delta)
+
+
+    def mouseReleaseEvent(self, event, image_instance):
+        if event.button() == Qt.LeftButton:
+            result = None
+            image_instance.brightness_coef += self.delta * 0.01
+            result = image_instance.calculate_brightness_contrast(image_instance.image)
+
+            # Update the QLabel with the adjusted image
+            if result is not None:
+                pixmap = self.numpy_array_to_qpixmap(result)
+                #image_instance.image_label.setPixmap(pixmap)
+
+            # Do something when the left mouse button is released
+            print(result)
+        
+    def numpy_array_to_qpixmap(self,image_array):
+            height, width = image_array.shape[:2]
+            bytes_per_line = width
+            # Create QImage from cv_image
+            q_image = QImage(image_array.data, width, height, bytes_per_line, QImage.Format.Format_Grayscale8)
+            # Convert QImage to QPixmap and set the display
+            q_pixmap = QPixmap.fromImage(q_image)
+            image_array.image_label.setPixmap(q_pixmap)
+
+
+
     
 
     def combo_activated(self, index):

@@ -25,6 +25,9 @@ class Image(QtWidgets.QWidget):
         self.real_shift = None
         self.imaginary_shift = None
         self.calculated = {}
+        self.contrast_coef , self.brightness_coef= 1.0,0.0
+        self.mousePressPosition = None
+        self.mouseMovePosition = None
         self.combos = combos if combos is not None else []  # Initialize as an empty list if not provided
         # Append each instance to the class variable
         Image.instances.append(self)
@@ -37,6 +40,7 @@ class Image(QtWidgets.QWidget):
             # Load the image using cv2
             cv_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
             if cv_image is not None:
+                #this reterns a tuple with three elements it is the height , width and number of channels
                 new_height, new_width = cv_image.shape[:2]
                 if self.image is not None and (new_width, new_height) != (self.width, self.height):
                     # Sizes are different, apply adjust_image_sizes function
@@ -48,7 +52,8 @@ class Image(QtWidgets.QWidget):
                 self.width, self.height = new_width, new_height
                 # Adjust sizes after updating the display
                 self.adjust_sizes()
-
+                #self.calculate_brightness_contrast(cv_image)
+                
     def update_display(self, cv_image):
         if cv_image is not None:
             # Update self.image with the cv_image
@@ -109,6 +114,46 @@ class Image(QtWidgets.QWidget):
                 # self.imaginary_shift = np.imag(ft_image_shifted)
                 # self.magnitude_shift = (20*np.log(np.abs(self.dft_shift))).astype(np.uint8)
                 # self.real_shift = (20*np.log(np.real(self.dft_shift))).astype(np.uint8)
+                self.imaginary_shift = (np.imag(self.dft_shift)).astype(np.uint8)
+                epsilon = 1e-10  # Small constant to avoid log(0)
+
+                self.magnitude_shift = (20 * np.log(np.abs(self.dft_shift) + epsilon)).astype(np.uint8)
+                self.real_shift = (20 * np.log(np.abs(np.real(self.dft_shift)) + epsilon)).astype(np.uint8)
+                self.calculated = {index : True}
+
+                self.ft_components = { index :
+                    {"FT Magnitude": self.magnitude_shift,
+                    "FT Phase": self.phase_shift,
+                    "FT Real ": self.real_shift,
+                    "FT Imaginary ": self.imaginary_shift}
+                    }
+    def calculate_brightness_contrast(self, cv_image):
+            # Ensure cv_image is a NumPy array
+            # if isinstance(cv_image, Image):
+            #     print("kkkkkkkkkkkkkkkkkkkkkkkkkkk")
+            #     #print(cv_image.shape())
+            #     # If cv_image is an instance of the 'Image' class, use its internal 'image' attribute
+            #     cv_image = cv_image.image
+            result=None
+            if cv_image is not None:
+                # Ensure cv_image is a NumPy array with compatible data type
+                # cv_image = np.array(cv_image, dtype=np.float32)
+
+                # Perform addWeighted operation
+                result = cv2.addWeighted(cv_image, self.contrast_coef, np.zeros_like(cv_image), 0, self.brightness_coef)
+
+                # Convert the result back to the original data type (e.g., uint8)
+                #result = np.clip(result, 0, 255).astype(np.uint8)
+
+                # Update the internal image attribute with the result
+                self.image = result
+
+
+            return result
+
+
+
+
 
     def check_combo(self, index):
         if index not in self.calculated :
