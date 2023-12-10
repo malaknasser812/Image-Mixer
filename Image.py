@@ -26,8 +26,7 @@ class Image(QtWidgets.QWidget):
         self.imaginary_shift = None
         self.calculated = {}
         self.contrast_coef , self.brightness_coef= 1.0,0.0
-        self.mousePressPosition = None
-        self.mouseMovePosition = None
+        # self.mouseMovePosition = None
         self.combos = combos if combos is not None else []  # Initialize as an empty list if not provided
         # Append each instance to the class variable
         Image.instances.append(self)
@@ -127,33 +126,15 @@ class Image(QtWidgets.QWidget):
                     "FT Real ": self.real_shift,
                     "FT Imaginary ": self.imaginary_shift}
                     }
+                
+
     def calculate_brightness_contrast(self, cv_image):
-            # Ensure cv_image is a NumPy array
-            # if isinstance(cv_image, Image):
-            #     print("kkkkkkkkkkkkkkkkkkkkkkkkkkk")
-            #     #print(cv_image.shape())
-            #     # If cv_image is an instance of the 'Image' class, use its internal 'image' attribute
-            #     cv_image = cv_image.image
             result=None
             if cv_image is not None:
-                # Ensure cv_image is a NumPy array with compatible data type
-                # cv_image = np.array(cv_image, dtype=np.float32)
-
-                # Perform addWeighted operation
+                print( self.brightness_coef)
                 result = cv2.addWeighted(cv_image, self.contrast_coef, np.zeros_like(cv_image), 0, self.brightness_coef)
-
-                # Convert the result back to the original data type (e.g., uint8)
-                #result = np.clip(result, 0, 255).astype(np.uint8)
-
-                # Update the internal image attribute with the result
                 self.image = result
-
-
             return result
-
-
-
-
 
     def check_combo(self, index):
         if index not in self.calculated :

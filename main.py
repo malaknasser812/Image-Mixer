@@ -35,7 +35,8 @@ class MainWindow(QtWidgets.QMainWindow):
         # Load the UI Page
         uic.loadUi(r'task4.ui', self)
         #some variabels assosiated with gragging event
-        self.delta = 10
+        self.delta_y = 0.0
+        self.delta_x = 0.0
         self.setMouseTracking(True)
         self.mousePressPosition = None
         self.mouseMovePosition = None
@@ -80,45 +81,33 @@ class MainWindow(QtWidgets.QMainWindow):
         if event.button() == Qt.LeftButton:
             label.mousePressPosition = event.globalPos()
             label.mouseMovePosition = event.globalPos()
+
     def mouseMoveEvent(self, event,label):
         if event.buttons() == Qt.LeftButton:
             # Calculate the delta position
-            delta = event.globalPos() - label.mouseMovePosition
+                    # Calculate the midpoint of the image
+            image_midpoint = label.rect().center()
+            print(f"midpoint {image_midpoint}")
+            delta = event.pos() - image_midpoint
+            delta_y = float(delta.y())
             delta_x = float(delta.x())  # Convert x component to float
-            self.delta =delta_x
-            # Move the label to the left
-            #label.move(label.x() - delta.x(), label.y())
+            self.delta_y = delta_y
+            self.delta_x =delta_x
             label.mouseMovePosition = event.globalPos()
-            print(self.delta)
+            print(f"this is y {self.delta_y}")
+            print("khkhkhkhkhhkhkhkhkhkhk")
+            print(f"this is x {self.delta_x}")
 
 
     def mouseReleaseEvent(self, event, image_instance):
         if event.button() == Qt.LeftButton:
             result = None
-            image_instance.brightness_coef += self.delta * 0.01
+            image_instance.contrast_coef  += self.delta_y * 0.01
+            image_instance.brightness_coef += self.delta_x * 0.01
             result = image_instance.calculate_brightness_contrast(image_instance.image)
-
-            # Update the QLabel with the adjusted image
-            if result is not None:
-                pixmap = self.numpy_array_to_qpixmap(result)
-                #image_instance.image_label.setPixmap(pixmap)
-
-            # Do something when the left mouse button is released
             print(result)
+            image_instance.update_display(result)
         
-    def numpy_array_to_qpixmap(self,image_array):
-            height, width = image_array.shape[:2]
-            bytes_per_line = width
-            # Create QImage from cv_image
-            q_image = QImage(image_array.data, width, height, bytes_per_line, QImage.Format.Format_Grayscale8)
-            # Convert QImage to QPixmap and set the display
-            q_pixmap = QPixmap.fromImage(q_image)
-            image_array.image_label.setPixmap(q_pixmap)
-
-
-
-    
-
     def combo_activated(self, index):
         for i, image_instance in enumerate(self.images):
             if i == index:
