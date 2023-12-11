@@ -9,8 +9,6 @@ import cv2
 
 logging.basicConfig(filename="Image.log",level=logging.INFO , format='%(levelname)s: %(message)s')
 
-
-
 class Image(QtWidgets.QWidget):
     instances =[]
     def __init__(self, image,ft_image, combos, parent=None):
@@ -30,8 +28,7 @@ class Image(QtWidgets.QWidget):
         self.combos = combos if combos is not None else []  # Initialize as an empty list if not provided
         # Append each instance to the class variable
         Image.instances.append(self)
-
-
+        
     def Browse(self):
         image_path, _ = QtWidgets.QFileDialog.getOpenFileName(
             None, 'Open Image File', './', filter="Image File (*.png *.jpg *.jpeg)")
@@ -51,8 +48,7 @@ class Image(QtWidgets.QWidget):
                 self.width, self.height = new_width, new_height
                 # Adjust sizes after updating the display
                 self.adjust_sizes()
-                #self.calculate_brightness_contrast(cv_image)
-                
+
     def update_display(self, cv_image):
         if cv_image is not None:
             # Update self.image with the cv_image
@@ -127,7 +123,6 @@ class Image(QtWidgets.QWidget):
                     "FT Imaginary ": self.imaginary_shift}
                     }
                 
-
     def calculate_brightness_contrast(self, cv_image):
             result=None
             if cv_image is not None:
