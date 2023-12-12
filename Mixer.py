@@ -115,24 +115,18 @@ class MyDialog(QtWidgets.QDialog):
         if self.mode == 'real-imag':
             construct = np.real(np.fft.ifft2(first + second))
         
-        # if np.max(construct) > 1.0: #normalizing
-        #     construct /= np.max(construct)
-        # print(construct)
+        if np.max(construct) > 1.0: #normalizing
+            construct /= np.max(construct)
+        print(construct)
 
         self.display_output(construct, outputgraph)
         
 
     def display_output(self, construct, outputIndex):
         outputgraph = self.outputgraphs[outputIndex]    
-        normalized_construct = ((construct - np.min(construct)) / (np.max(construct) - np.min(construct)) * 255).astype(np.uint8)
         
-        # Create a copy of the memoryview data as bytes
-        construct_bytes = bytes(normalized_construct.data)
-        image_height, image_width = normalized_construct.shape
-        q_image = QImage(construct_bytes, image_width, image_height,  normalized_construct.strides[0], QImage.Format_Grayscale8)
-        height, width = normalized_construct.shape
-        #q_image = QImage(normalized_construct.data, width, height, normalized_construct.strides[0], QImage.Format_Grayscale8)
-
+        image_height, image_width = construct.shape[:2]
+        q_image = QImage(construct.data.tobytes(), image_width, image_height, QImage.Format_Grayscale8)
 
         # Convert QImage to QPixmap
         q_pixmap = QPixmap.fromImage(q_image)
