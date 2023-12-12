@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>ft_compo_2</class>
+ <widget class="QMainWindow" name="ft_compo_2">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -92,6 +92,12 @@ TabButton::pressed {
      <layout class="QGridLayout" name="gridLayout_10">
       <item row="0" column="0">
        <widget class="QGroupBox" name="groupBox_3">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>250</height>
+         </size>
+        </property>
         <property name="title">
          <string/>
         </property>
@@ -176,6 +182,12 @@ TabButton::pressed {
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
               <widget class="QGroupBox" name="groupBox">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>200</height>
+                </size>
+               </property>
                <property name="title">
                 <string>Input Image </string>
                </property>
@@ -186,6 +198,12 @@ TabButton::pressed {
                    <size>
                     <width>0</width>
                     <height>150</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
                    </size>
                   </property>
                   <property name="frameShape">
@@ -207,25 +225,24 @@ TabButton::pressed {
              </item>
              <item>
               <widget class="QGroupBox" name="groupBox_2">
+               <property name="minimumSize">
+                <size>
+                 <width>400</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>200</height>
+                </size>
+               </property>
                <property name="title">
                 <string>Updated Image</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_3">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="ft_compo_1">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <widget class="QGraphicsView" name="ft_compo_1"/>
                 </item>
                </layout>
               </widget>
@@ -239,6 +256,12 @@ TabButton::pressed {
       </item>
       <item row="0" column="1">
        <widget class="QGroupBox" name="groupBox_24">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>250</height>
+         </size>
+        </property>
         <property name="title">
          <string/>
         </property>
@@ -323,6 +346,12 @@ TabButton::pressed {
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
               <widget class="QGroupBox" name="groupBox_25">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>200</height>
+                </size>
+               </property>
                <property name="title">
                 <string>Input Image </string>
                </property>
@@ -348,25 +377,24 @@ TabButton::pressed {
              </item>
              <item>
               <widget class="QGroupBox" name="ft_component2">
+               <property name="minimumSize">
+                <size>
+                 <width>400</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>200</height>
+                </size>
+               </property>
                <property name="title">
                 <string>Updated Image</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_38">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="ft_compo_2">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <widget class="QGraphicsView" name="ft_compo_5"/>
                 </item>
                </layout>
               </widget>
@@ -380,6 +408,12 @@ TabButton::pressed {
       </item>
       <item row="1" column="0">
        <widget class="QGroupBox" name="groupBox_4">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>250</height>
+         </size>
+        </property>
         <property name="title">
          <string/>
         </property>
@@ -464,6 +498,12 @@ TabButton::pressed {
             <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
               <widget class="QGroupBox" name="groupBox_13">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>200</height>
+                </size>
+               </property>
                <property name="title">
                 <string>Input Image </string>
                </property>
@@ -495,25 +535,24 @@ TabButton::pressed {
              </item>
              <item>
               <widget class="QGroupBox" name="groupBox_16">
+               <property name="minimumSize">
+                <size>
+                 <width>400</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>200</height>
+                </size>
+               </property>
                <property name="title">
                 <string>Updated Image</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_26">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="ft_compo_3">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <widget class="QGraphicsView" name="ft_compo_3"/>
                 </item>
                </layout>
               </widget>
@@ -527,6 +566,12 @@ TabButton::pressed {
       </item>
       <item row="1" column="1">
        <widget class="QGroupBox" name="groupBox_19">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>250</height>
+         </size>
+        </property>
         <property name="title">
          <string/>
         </property>
@@ -611,6 +656,12 @@ TabButton::pressed {
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <item>
               <widget class="QGroupBox" name="groupBox_22">
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>200</height>
+                </size>
+               </property>
                <property name="title">
                 <string>Input Image </string>
                </property>
@@ -636,25 +687,24 @@ TabButton::pressed {
              </item>
              <item>
               <widget class="QGroupBox" name="groupBox_23">
+               <property name="minimumSize">
+                <size>
+                 <width>400</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>200</height>
+                </size>
+               </property>
                <property name="title">
                 <string>Updated Image</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_34">
                 <item row="0" column="0">
-                 <widget class="QLabel" name="ft_compo_4">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
+                 <widget class="QGraphicsView" name="ft_compo_4"/>
                 </item>
                </layout>
               </widget>
@@ -785,97 +835,6 @@ TabButton::pressed {
                    </widget>
                   </item>
                  </layout>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_9">
-          <property name="minimumSize">
-           <size>
-            <width>300</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>300</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="sizeIncrement">
-           <size>
-            <width>150</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="title">
-           <string/>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_13">
-           <item row="0" column="0">
-            <layout class="QGridLayout" name="gridLayout_12">
-             <item row="0" column="0">
-              <widget class="QComboBox" name="comboBox_2">
-               <item>
-                <property name="text">
-                 <string>Image 1</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Image 2</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Image 3</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Image 4</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <layout class="QVBoxLayout" name="verticalLayout_3">
-               <item>
-                <widget class="QLabel" name="label">
-                 <property name="text">
-                  <string>Brightness</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QSlider" name="bright_slider">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="2" column="0">
-              <layout class="QVBoxLayout" name="verticalLayout_6">
-               <item>
-                <widget class="QLabel" name="label_2">
-                 <property name="text">
-                  <string>Contrast</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QSlider" name="contrast_slider">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
                 </widget>
                </item>
               </layout>
