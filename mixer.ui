@@ -129,22 +129,22 @@
                  <widget class="QComboBox" name="mixer_combo_2">
                   <item>
                    <property name="text">
-                    <string>Magnitude</string>
+                    <string>FT Magnitude</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Phase</string>
+                    <string>FT Phase</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Real</string>
+                    <string>FT Real</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Imaginary</string>
+                    <string>FT Imaginary</string>
                    </property>
                   </item>
                  </widget>
@@ -236,22 +236,22 @@
                  <widget class="QComboBox" name="mixer_combo_1">
                   <item>
                    <property name="text">
-                    <string>Magnitude</string>
+                    <string>FT Magnitude</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Phase</string>
+                    <string>FT Phase</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Real</string>
+                    <string>FT Real</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Imaginary</string>
+                    <string>FT Imaginary</string>
                    </property>
                   </item>
                  </widget>
@@ -330,22 +330,22 @@
                  <widget class="QComboBox" name="mixer_combo_4">
                   <item>
                    <property name="text">
-                    <string>Magnitude</string>
+                    <string>FT Magnitude</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Phase</string>
+                    <string>FT Phase</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Real</string>
+                    <string>FT Real</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Imaginary</string>
+                    <string>FT Imaginary</string>
                    </property>
                   </item>
                  </widget>
@@ -437,22 +437,22 @@
                  <widget class="QComboBox" name="mixer_combo_3">
                   <item>
                    <property name="text">
-                    <string>Magnitude</string>
+                    <string>FT Magnitude</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Phase</string>
+                    <string>FT Phase</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Real</string>
+                    <string>FT Real</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>Imaginary</string>
+                    <string>FT Imaginary</string>
                    </property>
                   </item>
                  </widget>
@@ -534,7 +534,7 @@
          </layout>
         </item>
         <item row="5" column="0">
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="apply_btn">
           <property name="text">
            <string>apply</string>
           </property>

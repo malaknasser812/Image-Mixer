@@ -11,18 +11,16 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QFileDialog,QDialog, QGraphicsScene ,QLabel , QHBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from PyQt5 import QtWidgets, uic 
+from PyQt5.QtGui import QImage, QPixmap
 from cmath import*
 from numpy import *
 import sys
 import matplotlib
 matplotlib.use('Qt5Agg')
 from Image import Image as ig
-from PyQt5.QtGui import QPixmap, QImage 
-class MyDialog(QtWidgets.QDialog):
-    def __init__(self):
-        super(MyDialog, self).__init__()
-        # Load the UI Page
-        uic.loadUi(r'mixer.ui', self)
+from Mixer import MyDialog as MX
+
+
 
 class MainWindow(QtWidgets.QMainWindow):
 
@@ -44,6 +42,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.combos = [self.ft_combo1, self.ft_combo2, self.ft_combo3, self.ft_combo4]
         # Create a list to store Image instances and associated QLabel objects
         self.images = [ig(graph, ft_image, self.combos) for graph, ft_image in zip(image_graphs, ft_image_graphs)]
+        self.output_graphs = [self.output1, self.output2]
+        self.mixer = MX(self.output_graphs, self.images, self)
 
         #Connections
         # Connect combobox signals to the corresponding check_combo method
@@ -98,30 +98,25 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
     def open_dialog(self):
-        # Create an instance of the custom dialog
-        Mixer = MyDialog()
+        # Create an instance of the custom Mixer
+        Mixer = MX(self.output_graphs, self.images, self)
 
         # Show the dialog
         Mixer.exec_()
 
-        self.output_channels_controlers = {
-            'Output 1': {
-                'select1 img': '',
-                'select2 img': '',
-                'slider1 val': 0,
-                'slider2 va;': 0,
-                'type1': '',
-                'type2': ''
-            },
-            'Output 2': {
-                'select1 img': '',
-                'select2 img': '',
-                'slider1 val': 0,
-                'slider2 val': 0,
-                'type1': '',
-                'type2': ''
-            }
-        } 
+    
+
+
+    
+        
+
+
+
+
+
+       
+        
+    
 def main():
     app = QtWidgets.QApplication(sys.argv)
     main = MainWindow()
