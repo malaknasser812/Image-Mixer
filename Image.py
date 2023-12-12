@@ -92,12 +92,6 @@ class Image(QtWidgets.QWidget):
                 self.real_shift = (20 * np.log(np.abs(np.real(self.dft_shift)) + epsilon)).astype(np.uint8)
                 self.imaginary_shift = (np.imag(self.dft_shift)).astype(np.uint8)
                 self.calculated = {index : True}
-                self.ft_components = { index :
-                    {"FT Magnitude": self.magnitude_shift,
-                    "FT Phase": self.phase_shift,
-                    "FT Real": self.real_shift,
-                    "FT Imaginary": self.imaginary_shift}
-                    }
                 
                 # ft_image = np.fft.fft2(image_array_float)
                 # # Shift zero frequency components to the center
@@ -119,8 +113,8 @@ class Image(QtWidgets.QWidget):
                 self.ft_components = { index :
                     {"FT Magnitude": self.magnitude_shift,
                     "FT Phase": self.phase_shift,
-                    "FT Real ": self.real_shift,
-                    "FT Imaginary ": self.imaginary_shift}
+                    "FT Real": self.real_shift,
+                    "FT Imaginary": self.imaginary_shift}
                     }
                 
     def calculate_brightness_contrast(self, cv_image):
