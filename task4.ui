@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ft_compo_2</class>
- <widget class="QMainWindow" name="ft_compo_2">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -92,10 +92,16 @@ TabButton::pressed {
      <layout class="QGridLayout" name="gridLayout_10">
       <item row="0" column="0">
        <widget class="QGroupBox" name="groupBox_3">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>300</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>250</height>
+          <height>300</height>
          </size>
         </property>
         <property name="title">
@@ -182,12 +188,6 @@ TabButton::pressed {
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
               <widget class="QGroupBox" name="groupBox">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>200</height>
-                </size>
-               </property>
                <property name="title">
                 <string>Input Image </string>
                </property>
@@ -198,12 +198,6 @@ TabButton::pressed {
                    <size>
                     <width>0</width>
                     <height>150</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
                    </size>
                   </property>
                   <property name="frameShape">
@@ -234,7 +228,7 @@ TabButton::pressed {
                <property name="maximumSize">
                 <size>
                  <width>400</width>
-                 <height>200</height>
+                 <height>16777215</height>
                 </size>
                </property>
                <property name="title">
@@ -242,7 +236,11 @@ TabButton::pressed {
                </property>
                <layout class="QGridLayout" name="gridLayout_3">
                 <item row="0" column="0">
-                 <widget class="QGraphicsView" name="ft_compo_1"/>
+                 <widget class="QGraphicsView" name="ft_comp_1">
+                  <property name="frameShape">
+                   <enum>QFrame::WinPanel</enum>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>
@@ -256,10 +254,16 @@ TabButton::pressed {
       </item>
       <item row="0" column="1">
        <widget class="QGroupBox" name="groupBox_24">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>300</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>250</height>
+          <height>300</height>
          </size>
         </property>
         <property name="title">
@@ -346,12 +350,6 @@ TabButton::pressed {
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
               <widget class="QGroupBox" name="groupBox_25">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>200</height>
-                </size>
-               </property>
                <property name="title">
                 <string>Input Image </string>
                </property>
@@ -386,7 +384,7 @@ TabButton::pressed {
                <property name="maximumSize">
                 <size>
                  <width>400</width>
-                 <height>200</height>
+                 <height>16777215</height>
                 </size>
                </property>
                <property name="title">
@@ -394,7 +392,11 @@ TabButton::pressed {
                </property>
                <layout class="QGridLayout" name="gridLayout_38">
                 <item row="0" column="0">
-                 <widget class="QGraphicsView" name="ft_compo_5"/>
+                 <widget class="QGraphicsView" name="ft_comp_2">
+                  <property name="frameShape">
+                   <enum>QFrame::WinPanel</enum>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>
@@ -408,10 +410,16 @@ TabButton::pressed {
       </item>
       <item row="1" column="0">
        <widget class="QGroupBox" name="groupBox_4">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>300</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>250</height>
+          <height>300</height>
          </size>
         </property>
         <property name="title">
@@ -498,12 +506,6 @@ TabButton::pressed {
             <layout class="QHBoxLayout" name="horizontalLayout_8">
              <item>
               <widget class="QGroupBox" name="groupBox_13">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>200</height>
-                </size>
-               </property>
                <property name="title">
                 <string>Input Image </string>
                </property>
@@ -535,16 +537,10 @@ TabButton::pressed {
              </item>
              <item>
               <widget class="QGroupBox" name="groupBox_16">
-               <property name="minimumSize">
-                <size>
-                 <width>400</width>
-                 <height>0</height>
-                </size>
-               </property>
                <property name="maximumSize">
                 <size>
                  <width>400</width>
-                 <height>200</height>
+                 <height>16777215</height>
                 </size>
                </property>
                <property name="title">
@@ -552,7 +548,11 @@ TabButton::pressed {
                </property>
                <layout class="QGridLayout" name="gridLayout_26">
                 <item row="0" column="0">
-                 <widget class="QGraphicsView" name="ft_compo_3"/>
+                 <widget class="QGraphicsView" name="ft_comp_3">
+                  <property name="frameShape">
+                   <enum>QFrame::WinPanel</enum>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>
@@ -566,10 +566,16 @@ TabButton::pressed {
       </item>
       <item row="1" column="1">
        <widget class="QGroupBox" name="groupBox_19">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>300</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
-          <height>250</height>
+          <height>300</height>
          </size>
         </property>
         <property name="title">
@@ -656,12 +662,6 @@ TabButton::pressed {
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <item>
               <widget class="QGroupBox" name="groupBox_22">
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>200</height>
-                </size>
-               </property>
                <property name="title">
                 <string>Input Image </string>
                </property>
@@ -687,16 +687,10 @@ TabButton::pressed {
              </item>
              <item>
               <widget class="QGroupBox" name="groupBox_23">
-               <property name="minimumSize">
-                <size>
-                 <width>400</width>
-                 <height>0</height>
-                </size>
-               </property>
                <property name="maximumSize">
                 <size>
                  <width>400</width>
-                 <height>200</height>
+                 <height>16777215</height>
                 </size>
                </property>
                <property name="title">
@@ -704,7 +698,11 @@ TabButton::pressed {
                </property>
                <layout class="QGridLayout" name="gridLayout_34">
                 <item row="0" column="0">
-                 <widget class="QGraphicsView" name="ft_compo_4"/>
+                 <widget class="QGraphicsView" name="ft_comp_4">
+                  <property name="frameShape">
+                   <enum>QFrame::WinPanel</enum>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </widget>

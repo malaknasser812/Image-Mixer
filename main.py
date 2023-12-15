@@ -5,22 +5,29 @@ import pandas as pd
 import pyqtgraph as pg
 import os
 import time
+from scipy.interpolate import interp1d
 import pyqtgraph as pg
 from matplotlib.figure import Figure
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QFileDialog,QDialog, QGraphicsScene ,QLabel , QHBoxLayout
+from PyQt5.QtWidgets import QFileDialog, QMessageBox, QGraphicsScene ,QLabel , QHBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from PyQt5 import QtWidgets, uic 
-from PyQt5.QtGui import QImage, QPixmap
+from matplotlib.pyplot import figure
+import matplotlib.pyplot as plt
 from cmath import*
 from numpy import *
+from Mixer import MyDialog as MX
 import sys
 import matplotlib
 matplotlib.use('Qt5Agg')
 from Image import Image as ig
-from Mixer import MyDialog as MX
+from Image import Image
 
-
+class MyDialog(QtWidgets.QDialog):
+    def __init__(self):
+        super(MyDialog, self).__init__()
+        # Load the UI Page
+        uic.loadUi(r'mixer.ui', self)
 
 class MainWindow(QtWidgets.QMainWindow):
 
@@ -36,14 +43,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.mouseMovePosition = None
         #button connection
         self.component_btn.clicked.connect(self.open_dialog)
+        self.output_graphs = [self.output1, self.output2]
 
         image_graphs = [self.image1, self.image2, self.image3, self.image4] #this is a list of qlabel widgets
-        ft_image_graphs = [self.ft_compo_1, self.ft_compo_2, self.ft_compo_3, self.ft_compo_4]# a list of images of the ft components
+        ft_image_graphs = [self.ft_comp_1, self.ft_comp_2, self.ft_comp_3, self.ft_comp_4]
         self.combos = [self.ft_combo1, self.ft_combo2, self.ft_combo3, self.ft_combo4]
         # Create a list to store Image instances and associated QLabel objects
-        self.images = [ig(graph, ft_image, self.combos) for graph, ft_image in zip(image_graphs, ft_image_graphs)]
-        self.output_graphs = [self.output1, self.output2]
-        self.mixer = MX(self.output_graphs, self.images, self)
+        #self.images = [ig(graph, ft_image, self.combos) for graph, ft_image in zip(image_graphs, ft_image_graphs)]
+        self.images = [ig(graph, ft_image, combos=self.combos) for graph, ft_image in zip(image_graphs, ft_image_graphs)]
 
         #Connections
         # Connect combobox signals to the corresponding check_combo method
@@ -60,6 +67,11 @@ class MainWindow(QtWidgets.QMainWindow):
 
         for label, image_instance in zip(image_graphs, self.images):
             label.mouseDoubleClickEvent = lambda event, instance=image_instance: self.double_click_event(event, instance)
+                        # Connect mouse events for region selection for ft_image labels
+            if isinstance(image_instance.ft_image_label, QtWidgets.QGraphicsView):
+                image_instance.ft_image_label.mousePressEvent = lambda event, instance=image_instance: self.mouse_press_event(event, instance)
+                image_instance.ft_image_label.mouseMoveEvent = lambda event, instance=image_instance: self.mouse_move_event(event, instance)
+                image_instance.ft_image_label.mouseReleaseEvent = lambda event, instance=image_instance: self.mouse_release_event(event, instance)
             
     def double_click_event(self, event, image_instance):
         if event.button() == Qt.LeftButton:
@@ -96,7 +108,16 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 # Reset other combo boxes or perform other actions if needed
                 pass
+    def mouse_press_event(self, event, image_instance):
+        if event.button() == Qt.LeftButton:
+            image_instance.mousePressEvent(event)
 
+    def mouse_move_event(self, event, image_instance):
+        image_instance.mouseMoveEvent(event)
+
+    def mouse_release_event(self, event, image_instance):
+        if event.button() == Qt.LeftButton:
+            image_instance.mouseReleaseEvent(event)
     def open_dialog(self):
         # Create an instance of the custom Mixer
         Mixer = MX(self.output_graphs, self.images, self)
@@ -104,19 +125,24 @@ class MainWindow(QtWidgets.QMainWindow):
         # Show the dialog
         Mixer.exec_()
 
-    
-
-
-    
-        
-
-
-
-
-
-       
-        
-    
+        self.output_channels_controlers = {
+            'Output 1': {
+                'select1 img': '',
+                'select2 img': '',
+                'slider1 val': 0,
+                'slider2 va;': 0,
+                'type1': '',
+                'type2': ''
+            },
+            'Output 2': {
+                'select1 img': '',
+                'select2 img': '',
+                'slider1 val': 0,
+                'slider2 val': 0,
+                'type1': '',
+                'type2': ''
+            }
+        } 
 def main():
     app = QtWidgets.QApplication(sys.argv)
     main = MainWindow()
