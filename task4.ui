@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1234</width>
-    <height>894</height>
+    <width>1302</width>
+    <height>920</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -445,415 +445,87 @@ QScrollBar::right-arrow:horizontal {
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_11">
+   <layout class="QGridLayout" name="gridLayout_15">
     <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout_10">
-      <item row="1" column="0">
-       <widget class="QGroupBox" name="groupBox_4">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_23">
-         <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout_2">
-           <item>
-            <widget class="QFrame" name="frame_8">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: white;</string>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_24">
-              <item row="0" column="1">
-               <widget class="QCheckBox" name="outer_inner_checkbox_3">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QCheckBox::indicator:checked {
-
-    height: 15px;
-    width: 15px;
-    border-style:solid;
-    border-width: 1px;
-    border-color: #ffffff
-    color: #ffffff;
-    border-radius: 3px;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0  #34455e, stop:0.5   rgb(0, 109, 163), stop:1   rgb(0, 109, 163));
-}
-QCheckBox::indicator:checked::indicator:checked {
-    color: #ffffff; /* Set the text color to white when checked */
-}
-
-QCheckBox::indicator:unchecked {
-    color: #ffffff; /* Set the text color to white when unchecked */
-}</string>
-                </property>
-                <property name="text">
-                 <string>outer</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_22">
-                <property name="font">
-                 <font>
-                  <family>Calibri</family>
-                  <pointsize>10</pointsize>
-                  <weight>75</weight>
-                  <italic>true</italic>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>Image Three</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QComboBox" name="ft_combo3">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color:rgb(58, 58, 58)</string>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>FT Magnitude</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Phase</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Real</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Imaginary</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_8">
-             <item>
-              <widget class="QGroupBox" name="groupBox_13">
-               <property name="styleSheet">
-                <string notr="true">QGroupBox {
-    border: none; /* or border: 0; */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 5px; /* Optional padding for the title */
-}
-</string>
-               </property>
-               <property name="title">
-                <string/>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_25">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="image3">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>150</height>
-                   </size>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QGroupBox" name="groupBox_16">
-               <property name="maximumSize">
-                <size>
-                 <width>400</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QGroupBox {
-    border: none; /* or border: 0; */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 5px; /* Optional padding for the title */
-}
-</string>
-               </property>
-               <property name="title">
-                <string/>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_26">
-                <item row="0" column="0">
-                 <widget class="QGraphicsView" name="ft_comp_3">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QSlider" name="comp1_hslider_6">
-                  <property name="styleSheet">
-                   <string notr="true"> QSlider::sub-page {
-    border: 1px transparent;
-    background-color:  rgb(0, 109, 163); /* Change the background color to #34455e */
-    border-radius: 4px;
-}</string>
-                  </property>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
+     <layout class="QGridLayout" name="gridLayout_14">
       <item row="0" column="0">
-       <widget class="QGroupBox" name="groupBox_3">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_22">
-         <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <item>
-            <widget class="QFrame" name="frame">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <layout class="QGridLayout" name="gridLayout">
-              <item row="0" column="1">
-               <widget class="QCheckBox" name="outer_inner_checkbox_1">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QCheckBox::indicator:checked {
-
-    height: 15px;
-    width: 15px;
-    border-style:solid;
-    border-width: 1px;
-    border-color: #ffffff
-    color: #ffffff;
-    border-radius: 3px;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0  #34455e, stop:0.5   rgb(0, 109, 163), stop:1   rgb(0, 109, 163));
-}
-QCheckBox::indicator:checked::indicator:checked {
-    color: #ffffff; /* Set the text color to white when checked */
-}
-
-QCheckBox::indicator:unchecked {
-    color: #ffffff; /* Set the text color to white when unchecked */
-}</string>
-                </property>
-                <property name="text">
-                 <string>outer</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QComboBox" name="ft_combo1">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>FT Magnitude</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Phase</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Real</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Imaginary</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_3">
-                <property name="font">
-                 <font>
-                  <family>Calibri</family>
-                  <pointsize>10</pointsize>
-                  <weight>75</weight>
-                  <italic>true</italic>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: white;</string>
-                </property>
-                <property name="text">
-                 <string>Image One</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QGridLayout" name="gridLayout_13">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_22">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout">
              <item>
-              <widget class="QGroupBox" name="groupBox">
-               <property name="styleSheet">
-                <string notr="true">QGroupBox {
-    border: none; /* or border: 0; */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 5px; /* Optional padding for the title */
-}
-</string>
+              <widget class="QFrame" name="frame">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
                </property>
-               <property name="title">
-                <string/>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
                </property>
-               <layout class="QGridLayout" name="gridLayout_2">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="image1">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout">
+                <item row="0" column="2">
+                 <widget class="QComboBox" name="comboBox">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
-                    <height>150</height>
+                    <height>25</height>
                    </size>
                   </property>
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>25</height>
+                   </size>
                   </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Magnitude</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Phase</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Real</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Imaginary</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_3">
                   <property name="text">
-                   <string/>
+                   <string>Image 1</string>
                   </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QCheckBox" name="outer_checkbox_1">
+                  <property name="text">
+                   <string>Outer</string>
                   </property>
                  </widget>
                 </item>
@@ -861,26 +533,11 @@ QGroupBox::title {
               </widget>
              </item>
              <item>
-              <widget class="QGroupBox" name="groupBox_2">
-               <property name="minimumSize">
-                <size>
-                 <width>400</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>400</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true"> QSlider::sub-page {
-    border: 1px transparent;
-    background-color: #34455e; /* Change the background color to #34455e */
-    border-radius: 4px;
-}
-QGroupBox {
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <item>
+                <widget class="QGroupBox" name="groupBox">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
     border: none; /* or border: 0; */
 }
 
@@ -889,230 +546,181 @@ QGroupBox::title {
     subcontrol-position: top left;
     padding: 0 5px; /* Optional padding for the title */
 }
+
 </string>
-               </property>
-               <property name="title">
-                <string/>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_3">
-                <item row="0" column="0">
-                 <widget class="QGraphicsView" name="ft_comp_1">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QSlider" name="comp1_hslider_1">
-                  <property name="styleSheet">
-                   <string notr="true"> QSlider::sub-page {
-    border: 1px transparent;
-    background-color:  rgb(0, 109, 163); /* Change the background color to #34455e */
-    border-radius: 4px;
-}</string>
-                  </property>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_2">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="image1">
+                    <property name="minimumSize">
+                     <size>
+                      <width>400</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>450</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_2">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
+    border: none; /* or border: 0; */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px; /* Optional padding for the title */
+}
+
+</string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_16">
+                  <item row="0" column="0">
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <item>
+                     <widget class="QGraphicsView" name="ft_comp_1">
+                      <property name="frameShape">
+                       <enum>QFrame::NoFrame</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Sunken</enum>
+                      </property>
+                      <property name="sizeAdjustPolicy">
+                       <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+                      </property>
+                      <property name="interactive">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="verticalSlider">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>
           </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QGroupBox" name="groupBox_24">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_35">
-         <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout_5">
-           <item>
-            <widget class="QFrame" name="frame_11">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_36">
-              <item row="0" column="1">
-               <widget class="QCheckBox" name="outer_inner_checkbox_2">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QCheckBox::indicator:checked {
-
-    height: 15px;
-    width: 15px;
-    border-style:solid;
-    border-width: 1px;
-    border-color: #ffffff
-    color: #ffffff;
-    border-radius: 3px;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0  #34455e, stop:0.5   rgb(0, 109, 163), stop:1   rgb(0, 109, 163));
-}
-QCheckBox::indicator:checked::indicator:checked {
-    color: #ffffff; /* Set the text color to white when checked */
-}
-
-QCheckBox::indicator:unchecked {
-    color: #ffffff; /* Set the text color to white when unchecked */
-}</string>
-                </property>
-                <property name="text">
-                 <string>outer</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QComboBox" name="ft_combo2">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>FT Magnitude</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Phase</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Real</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Imaginary</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_31">
-                <property name="font">
-                 <font>
-                  <family>Calibri</family>
-                  <pointsize>10</pointsize>
-                  <weight>75</weight>
-                  <italic>true</italic>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: white;</string>
-                </property>
-                <property name="text">
-                 <string>Image Two</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBox_24">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_35">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_5">
              <item>
-              <widget class="QGroupBox" name="groupBox_25">
-               <property name="styleSheet">
-                <string notr="true">QGroupBox {
-    border: none; /* or border: 0; */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 5px; /* Optional padding for the title */
-}
-</string>
-               </property>
-               <property name="title">
-                <string/>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_37">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="image2">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QGroupBox" name="ft_component2">
+              <widget class="QFrame" name="frame_11">
                <property name="minimumSize">
                 <size>
-                 <width>400</width>
-                 <height>0</height>
+                 <width>0</width>
+                 <height>40</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>400</width>
-                 <height>16777215</height>
+                 <width>16777215</width>
+                 <height>40</height>
                 </size>
                </property>
-               <property name="styleSheet">
-                <string notr="true">QGroupBox {
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_36">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_31">
+                  <property name="text">
+                   <string>Image 2</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="comboBox_11">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Magnitude</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Phase</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Real</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Imaginary</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_11">
+               <item>
+                <widget class="QGroupBox" name="groupBox_25">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
     border: none; /* or border: 0; */
 }
 
@@ -1121,119 +729,501 @@ QGroupBox::title {
     subcontrol-position: top left;
     padding: 0 5px; /* Optional padding for the title */
 }
+
 </string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_37">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="image2">
+                    <property name="minimumSize">
+                     <size>
+                      <width>400</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="ft_component2">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
+    border: none; /* or border: 0; */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px; /* Optional padding for the title */
+}
+
+</string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_10">
+                  <item row="0" column="0">
+                   <layout class="QHBoxLayout" name="horizontalLayout_7">
+                    <item>
+                     <widget class="QGraphicsView" name="ft_comp_2"/>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="verticalSlider_3">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_23">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QFrame" name="frame_8">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
                </property>
-               <property name="title">
-                <string/>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
                </property>
-               <layout class="QGridLayout" name="gridLayout_38">
-                <item row="1" column="0">
-                 <widget class="QSlider" name="comp1_hslider_2">
-                  <property name="styleSheet">
-                   <string notr="true"> QSlider::sub-page {
-    border: 1px transparent;
-    background-color:  rgb(0, 109, 163); /* Change the background color to #34455e */
-    border-radius: 4px;
-}</string>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_24">
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="comboBox_8">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
                   </property>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>25</height>
+                   </size>
                   </property>
+                  <item>
+                   <property name="text">
+                    <string>Magnitude</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Phase</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Real</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Imaginary</string>
+                   </property>
+                  </item>
                  </widget>
                 </item>
                 <item row="0" column="0">
-                 <widget class="QGraphicsView" name="ft_comp_2">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
+                 <widget class="QLabel" name="label_22">
+                  <property name="text">
+                   <string>Image 3</string>
                   </property>
                  </widget>
                 </item>
                </layout>
               </widget>
              </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_8">
+               <item>
+                <widget class="QGroupBox" name="groupBox_13">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
+    border: none; /* or border: 0; */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px; /* Optional padding for the title */
+}
+
+</string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_25">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="image3">
+                    <property name="minimumSize">
+                     <size>
+                      <width>400</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_16">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
+    border: none; /* or border: 0; */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px; /* Optional padding for the title */
+}
+
+</string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_3">
+                  <item row="0" column="0">
+                   <layout class="QHBoxLayout" name="horizontalLayout_6">
+                    <item>
+                     <widget class="QGraphicsView" name="ft_comp_3"/>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="verticalSlider_2">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </item>
             </layout>
            </item>
           </layout>
-         </item>
-        </layout>
-       </widget>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="groupBox_19">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_31">
+           <item row="0" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <item>
+              <widget class="QFrame" name="frame_10">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_32">
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="comboBox_10">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>25</height>
+                   </size>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Magnitude</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Phase</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Real</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Imaginary</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_28">
+                  <property name="text">
+                   <string>Image 4</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_10">
+               <item>
+                <widget class="QGroupBox" name="groupBox_22">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
+    border: none; /* or border: 0; */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px; /* Optional padding for the title */
+}
+
+</string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_33">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="image4">
+                    <property name="minimumSize">
+                     <size>
+                      <width>400</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="scaledContents">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_23">
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
+    border: none; /* or border: 0; */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px; /* Optional padding for the title */
+}
+
+</string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_11">
+                  <item row="0" column="0">
+                   <layout class="QHBoxLayout" name="horizontalLayout_9">
+                    <item>
+                     <widget class="QGraphicsView" name="ft_comp_4"/>
+                    </item>
+                    <item>
+                     <widget class="QSlider" name="verticalSlider_4">
+                      <property name="orientation">
+                       <enum>Qt::Vertical</enum>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="2" column="0" colspan="2">
+      <item row="1" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
          <widget class="QGroupBox" name="groupBox_8">
           <property name="minimumSize">
            <size>
-            <width>300</width>
+            <width>100</width>
             <height>0</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>100</width>
+            <width>300</width>
             <height>16777215</height>
            </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Calibri</family>
-            <pointsize>10</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
           </property>
           <property name="title">
            <string/>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
-           <item row="2" column="0">
+           <item row="1" column="0">
             <widget class="QGroupBox" name="groupBox_9">
-             <property name="styleSheet">
-              <string notr="true">color: white;</string>
-             </property>
              <property name="title">
-              <string>Mode</string>
+              <string/>
              </property>
              <layout class="QGridLayout" name="gridLayout_12">
-              <item row="0" column="0">
-               <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item row="1" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
-                 <widget class="QCheckBox" name="checkBox_5">
-                  <property name="text">
-                   <string>Mag/Phase</string>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <item>
+                   <widget class="QCheckBox" name="mag_phase_checkbox">
+                    <property name="text">
+                     <string>Mag/Phase</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="real_imag_checkbox">
+                    <property name="text">
+                     <string>Real/Imag</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkBox_6">
+                 <widget class="QPushButton" name="apply_btn">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>30</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>30</height>
+                   </size>
+                  </property>
                   <property name="text">
-                   <string>Real/Imag</string>
+                   <string>Apply</string>
                   </property>
                  </widget>
                 </item>
                </layout>
               </item>
-              <item row="1" column="0">
-               <widget class="QPushButton" name="apply_btn">
-                <property name="styleSheet">
-                 <string notr="true">color:rgb(80, 80, 80)</string>
+              <item row="0" column="0">
+               <widget class="QProgressBar" name="progressBar">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
                 </property>
-                <property name="text">
-                 <string>Apply</string>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>10</height>
+                 </size>
+                </property>
+                <property name="value">
+                 <number>24</number>
                 </property>
                </widget>
               </item>
              </layout>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QPushButton" name="region_btn">
-             <property name="text">
-              <string>region mixer</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
+           <item row="0" column="0">
             <widget class="QComboBox" name="mixer_output_combobox">
              <item>
               <property name="text">
@@ -1247,6 +1237,25 @@ QGroupBox::title {
              </item>
             </widget>
            </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="region_btn">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Region Mixer</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -1254,8 +1263,16 @@ QGroupBox::title {
          <widget class="QGroupBox" name="groupBox_7">
           <property name="styleSheet">
            <string notr="true">QGroupBox {
-    border: none;
-}</string>
+    border: none; /* or border: 0; */
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 5px; /* Optional padding for the title */
+}
+
+</string>
           </property>
           <property name="title">
            <string/>
@@ -1273,18 +1290,6 @@ QGroupBox::title {
                    <height>25</height>
                   </size>
                  </property>
-                 <property name="font">
-                  <font>
-                   <family>Calibri</family>
-                   <pointsize>10</pointsize>
-                   <weight>75</weight>
-                   <italic>true</italic>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: white;</string>
-                 </property>
                  <property name="text">
                   <string>Output 1</string>
                  </property>
@@ -1292,34 +1297,12 @@ QGroupBox::title {
                </item>
                <item row="1" column="0">
                 <widget class="QGroupBox" name="groupBox_5">
-                 <property name="styleSheet">
-                  <string notr="true">QGroupBox {
-    border: none; /* or border: 0; */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 5px; /* Optional padding for the title */
-}
-</string>
-                 </property>
                  <property name="title">
                   <string/>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_5">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="output1">
-                    <property name="frameShape">
-                     <enum>QFrame::WinPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Sunken</enum>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
+                   <widget class="QGraphicsView" name="output1"/>
                   </item>
                  </layout>
                 </widget>
@@ -1336,18 +1319,6 @@ QGroupBox::title {
                    <height>25</height>
                   </size>
                  </property>
-                 <property name="font">
-                  <font>
-                   <family>Calibri</family>
-                   <pointsize>10</pointsize>
-                   <weight>75</weight>
-                   <italic>true</italic>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">color: white;</string>
-                 </property>
                  <property name="text">
                   <string>Output 2</string>
                  </property>
@@ -1355,34 +1326,12 @@ QGroupBox::title {
                </item>
                <item row="1" column="0">
                 <widget class="QGroupBox" name="groupBox_6">
-                 <property name="styleSheet">
-                  <string notr="true">QGroupBox {
-    border: none; /* or border: 0; */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 5px; /* Optional padding for the title */
-}
-</string>
-                 </property>
                  <property name="title">
                   <string/>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_6">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="output2">
-                    <property name="frameShape">
-                     <enum>QFrame::WinPanel</enum>
-                    </property>
-                    <property name="frameShadow">
-                     <enum>QFrame::Sunken</enum>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
+                   <widget class="QGraphicsView" name="output2"/>
                   </item>
                  </layout>
                 </widget>
@@ -1396,232 +1345,6 @@ QGroupBox::title {
         </item>
        </layout>
       </item>
-      <item row="1" column="1">
-       <widget class="QGroupBox" name="groupBox_19">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="title">
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_31">
-         <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-            <widget class="QFrame" name="frame_10">
-             <property name="minimumSize">
-              <size>
-               <width>0</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>16777215</width>
-               <height>35</height>
-              </size>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_32">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_28">
-                <property name="font">
-                 <font>
-                  <family>Calibri</family>
-                  <pointsize>10</pointsize>
-                  <weight>75</weight>
-                  <italic>true</italic>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: white;</string>
-                </property>
-                <property name="text">
-                 <string>Image Four</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QCheckBox" name="outer_inner_checkbox_4">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QCheckBox::indicator:checked {
-
-    height: 15px;
-    width: 15px;
-    border-style:solid;
-    border-width: 1px;
-    border-color: #ffffff
-    color: #ffffff;
-    border-radius: 3px;
-    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0  #34455e, stop:0.5   rgb(0, 109, 163), stop:1   rgb(0, 109, 163));
-}
-QCheckBox::indicator:checked::indicator:checked {
-    color: #ffffff; /* Set the text color to white when checked */
-}
-
-QCheckBox::indicator:unchecked {
-    color: #ffffff; /* Set the text color to white when unchecked */
-}</string>
-                </property>
-                <property name="text">
-                 <string>outer</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QComboBox" name="ft_combo4">
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>23</height>
-                 </size>
-                </property>
-                <item>
-                 <property name="text">
-                  <string>FT Magnitude</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Phase</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Real</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>FT Imaginary</string>
-                 </property>
-                </item>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_10">
-             <item>
-              <widget class="QGroupBox" name="groupBox_22">
-               <property name="styleSheet">
-                <string notr="true">QGroupBox {
-    border: none; /* or border: 0; */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 5px; /* Optional padding for the title */
-}
-</string>
-               </property>
-               <property name="title">
-                <string/>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_33">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="image4">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Sunken</enum>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="scaledContents">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-             <item>
-              <widget class="QGroupBox" name="groupBox_23">
-               <property name="maximumSize">
-                <size>
-                 <width>400</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QGroupBox {
-    border: none; /* or border: 0; */
-}
-
-QGroupBox::title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 5px; /* Optional padding for the title */
-}
-</string>
-               </property>
-               <property name="title">
-                <string/>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_34">
-                <item row="0" column="0">
-                 <widget class="QGraphicsView" name="ft_comp_4">
-                  <property name="frameShape">
-                   <enum>QFrame::WinPanel</enum>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QSlider" name="comp1_hslider_7">
-                  <property name="styleSheet">
-                   <string notr="true"> QSlider::sub-page {
-    border: 1px transparent;
-    background-color:  rgb(0, 109, 163); /* Change the background color to #34455e */
-    border-radius: 4px;
-}</string>
-                  </property>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
      </layout>
     </item>
    </layout>
@@ -1631,13 +1354,30 @@ QGroupBox::title {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1234</width>
-     <height>23</height>
+     <width>1302</width>
+     <height>19</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>output1</sender>
+   <signal>windowIconChanged(QIcon)</signal>
+   <receiver>progressBar</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>393</x>
+     <y>736</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>703</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

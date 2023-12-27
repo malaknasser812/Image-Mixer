@@ -1,12 +1,11 @@
-# from PyQt5 import Qt
-from PyQt5.QtWidgets import QGraphicsPixmapItem, QGraphicsScene,QGraphicsRectItem,QGraphicsItemGroup,QSlider,QHBoxLayout , QLabel ,QVBoxLayout
+
+from PyQt5.QtWidgets import QGraphicsPixmapItem, QGraphicsScene,QGraphicsRectItem
 from PyQt5.QtGui import QPixmap, QImage,QColor
 from PyQt5 import QtWidgets 
-from PyQt5.QtCore import Qt,QRectF , QSizeF
+from PyQt5.QtCore import Qt,QRectF
 import numpy as np
 import logging
 import cv2
-
 logging.basicConfig(filename="Image.log",level=logging.INFO , format='%(levelname)s: %(message)s')
 
 class Image(QtWidgets.QWidget):
@@ -18,25 +17,36 @@ class Image(QtWidgets.QWidget):
         self.width,self.height = 0,0
         self.image_label = image
         self.ft_components = {}
+        self.ft_components_mix = {}
+        self.ft_components_cropped = {}
         self.ft_image_label = ft_image
+        self.ft_image_label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.ft_image_label.setAlignment(Qt.AlignCenter)  # Align the image in the center 
         self.magnitude_shift = None
         self.phase_shift = None
         self.real_shift = None
         self.imaginary_shift = None
-        self.calculated = {}
-        
+        self.selected_combo_index = 0
+        self.calculated = [False, False, False, False]
         self.region_item = None  # QGraphicsRectItem for representing the selected region
         self.region_start = None  # Starting point of the region
         self.region_end = None  # Ending point of the region
         self.region_width = 0  # Width of the region
         self.region_height = 0  # Height of the region
-        self.active_region_item = None  # Variable to keep track of the currently active region
-        self.region_group = None  # Variable to keep track of the QGraphicsItemGroup
-        self.combos = combos if combos is not None else []  # Initialize as an empty list if not provided
         self.contrast_coef , self.brightness_coef= 1.0,0.0
+        self.delta_y = 0.0
+        self.delta_x = 0.0
+        self.setMouseTracking(True)
+        self.mousePressPosition = None
+        self.mouseMovePosition = None
+        self.original_image = None
+        self.combos = combos if combos is not None else []  # Initialize as an empty list if not provided
+        self.dft_shift = []
+        self.region = []
+        self.cropped = False
         # Append each instance to the class variable
         Image.instances.append(self)
-        
+
     def Browse(self):
         image_path, _ = QtWidgets.QFileDialog.getOpenFileName(
             None, 'Open Image File', './', filter="Image File (*.png *.jpg *.jpeg)")
@@ -44,7 +54,6 @@ class Image(QtWidgets.QWidget):
             # Load the image using cv2
             cv_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
             if cv_image is not None:
-                #this reterns a tuple with three elements it is the height , width and number of channels
                 new_height, new_width = cv_image.shape[:2]
                 if self.image is not None and (new_width, new_height) != (self.width, self.height):
                     # Sizes are different, apply adjust_image_sizes function
@@ -56,10 +65,11 @@ class Image(QtWidgets.QWidget):
                 self.width, self.height = new_width, new_height
                 # Adjust sizes after updating the display
                 self.adjust_sizes()
+                #self.Calculations()
 
     def update_display(self, cv_image):
         if cv_image is not None:
-            # Update self.image with the cv_image
+            # Update self.image with the cv_image 
             self.image = cv_image
             # Convert cv_image to QPixmap
             height, width = cv_image.shape[:2]
@@ -69,6 +79,8 @@ class Image(QtWidgets.QWidget):
             # Convert QImage to QPixmap and set the display
             q_pixmap = QPixmap.fromImage(q_image)
             self.image_label.setPixmap(q_pixmap)
+            # Adjust the size of the QLabel to match the size of the image
+            self.image_label.setFixedSize(width, height)
 
     def adjust_sizes(self):
         # Check if there are images in the instances list
@@ -77,156 +89,199 @@ class Image(QtWidgets.QWidget):
             # Find the smallest width and height among all images
             min_width = min(image.width for image in valid_images)
             min_height = min(image.height for image in valid_images)
-
             # Resize images in all instances to the smallest size
             for image in valid_images:
                 # Resize the original image using cv2
                 resized_image = cv2.resize(image.image, (min_width, min_height))
                 # Update the original image display
                 image.update_display(resized_image)
-
                 # Resize the FT component image using QGraphicsView
                 if hasattr(image.ft_image_label, 'scene'):
                     # Check if the scene exists
                     if image.ft_image_label.scene() is None:
                         # Create a new scene
                         image.ft_image_label.setScene(QGraphicsScene())
-
                     # Clear the scene before updating
                     image.ft_image_label.scene().clear()
-
                     # Retrieve the FT component from stored calculations
                     index = Image.instances.index(image)
                     selected_combo = image.combos[index].currentText()
-
                     # Ensure that the selected_combo exists in the dictionary before accessing it
                     if selected_combo in image.ft_components.get(index, {}):
                         selected_component = image.ft_components[index][selected_combo]
-
                         # Resize the FT component image using cv2
                         resized_ft_component = cv2.resize(selected_component, (min_width, min_height))
-
                         # Update the FT component display
-                        image.update_ft_display(resized_ft_component)
+                        # Pass the index parameter to update_ft_display
+                        image.update_ft_display(resized_ft_component, index)
 
-    def Calculations(self, index):
+    def Calculations(self, index, dftshift):
         if self.image is not None:
+            epsilon = 1e-10  # Small constant to avoid log(0)
+            self.magnitude_shift = (15 * np.log(np.abs(dftshift) + 1)).astype(np.uint8)
+            self.phase_shift = (np.angle(dftshift)).astype(np.uint8)
+            self.real_shift = (15 * np.log(np.abs(np.real(dftshift)) + epsilon)).astype(np.uint8)
+            self.imaginary_shift = (np.imag(dftshift)).astype(np.uint8)
+            if index not in self.ft_components:
+                self.ft_components[index] = {}
+            if self.calculated[index]:
+                self.cropped = True
+                self.ft_components_cropped = {
+                    "Magnitude": np.abs(dftshift),
+                    "Phase": np.angle(dftshift),
+                    "Real": np.real(dftshift),
+                    "Imaginary": np.imag(dftshift)
+                }
+            else:
+                self.ft_components[index]["Magnitude"] = self.magnitude_shift
+                self.ft_components[index]["Phase"] = self.phase_shift
+                self.ft_components[index]["Real"] = self.real_shift
+                self.ft_components[index]["Imaginary"] = self.imaginary_shift
+                self.ft_components_mix = {
+                    "Magnitude": np.abs(dftshift),
+                    "Phase": np.angle(dftshift),
+                    "Real": np.real(dftshift),
+                    "Imaginary": np.imag(dftshift)
+                }
+                self.calculated[index] = True
+         
+    def check_combo(self, index):
+        if not self.calculated[index]:
             # Convert uint8 array to float64
             image_array_float = self.image.astype(np.float64)
             self.dft = np.fft.fft2(image_array_float)
             self.dft_shift = np.fft.fftshift(self.dft)
-            epsilon = 1e-10  # Small constant to avoid log(0)
-            self.magnitude_shift = (20 * np.log(np.abs(self.dft_shift) + epsilon)).astype(np.uint8)
-            self.phase_shift = (np.angle(self.dft_shift)).astype(np.uint8)
-            self.real_shift = (20 * np.log(np.abs(np.real(self.dft_shift)) + epsilon)).astype(np.uint8)
-            self.imaginary_shift = (np.imag(self.dft_shift)).astype(np.uint8)
-            if index not in self.ft_components:
-                self.ft_components[index] = {}
-            self.calculated[index] = True
-            self.ft_components[index] = {
-                "FT Magnitude": self.magnitude_shift,
-                "FT Phase": self.phase_shift,
-                "FT Real": self.real_shift,
-                "FT Imaginary": self.imaginary_shift
-            }
-    def update_ft_display(self, cv_image):
+            self.Calculations(index, self.dft_shift)
+        selected_combo = self.combos[index].currentText()
+        if selected_combo in self.ft_components.get(index, {}):
+            selected_component = self.ft_components[index][selected_combo]
+            # Pass the index to the update_ft_display method
+            self.update_ft_display(selected_component, index)
+    
+    def update_ft_display(self, cv_image, index):
         if cv_image is not None:
             # Convert the NumPy array to QPixmap
             q_image = QImage(cv_image.data.tobytes(), cv_image.shape[1], cv_image.shape[0], QImage.Format_Grayscale8)
             pixmap_item = QGraphicsPixmapItem(QPixmap.fromImage(q_image))
-
             # Clear the scene before updating
             self.ft_image_label.scene().clear()
-
             # Add the item to the scene
             self.ft_image_label.scene().addItem(pixmap_item)
-
             # Set the scene rect to match the item rect
-            self.ft_image_label.scene().setSceneRect(QRectF(pixmap_item.pixmap().rect()))
-
+            self.ft_image_label.setSceneRect(QRectF(pixmap_item.pixmap().rect()))
+            # Resize the FT image label to match the size of the image
+            self.ft_image_label.setFixedSize(cv_image.shape[1], cv_image.shape[0])
+            # Set the size policy explicitly
+            self.ft_image_label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            # Set the scroll bars to always be off
+            self.ft_image_label.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            self.ft_image_label.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
             # Check if the region_item is still in the scene
             if self.region_item is not None and self.region_item in self.ft_image_label.scene().items():
                 # Remove the region_item from the scene before updating
                 self.ft_image_label.scene().removeItem(self.region_item)
-
             # Add the region_item to the scene if it exists
             if self.region_item is not None:
                 self.draw_region_rectangle()
-                
-    def calculate_brightness_contrast(self, cv_image):
-            result=None
-            if cv_image is not None:
-                print( self.brightness_coef)
-                result = cv2.addWeighted(cv_image, self.contrast_coef, np.zeros_like(cv_image), 0, self.brightness_coef)
-                self.image = result
-            return result
-    
+            # Store FT components separately for each instance
+            if index not in self.ft_components:
+                self.ft_components[index] = {}
+            # Retrieve the selected_combo from the instance's combos attribute
+            selected_combo = self.combos[index].currentText()
+            self.ft_components[index][selected_combo] = cv_image
 
-    def mousePressEvent(self, event):
+    def mousePressEvent_FT(self, event):
         if event.button() == Qt.LeftButton:
-            # Remove existing regions from the scene
-            for item in self.ft_image_label.scene().items():
-                if isinstance(item, QGraphicsRectItem):
-                    self.ft_image_label.scene().removeItem(item)
-
             # Store the starting point of the region if it's the first click
             if self.region_start is None:
                 self.region_start = event.pos()
-
             # Create a new QGraphicsRectItem for the selected region
             self.region_item = QGraphicsRectItem(QRectF(self.region_start, event.pos()))
             self.region_item.setPen(QColor(255, 0, 0))  # Red border
-
             # Add the region_item to the scene
             self.ft_image_label.scene().addItem(self.region_item)
-
-
-
-    def mouseMoveEvent(self, event):
-        if self.region_start is not None:
-            # Update the size of the active region dynamically
-            self.update_region_rectangle(event.pos())
-
-
-    def mouseReleaseEvent(self, event):
+            
+    def mouseReleaseEvent_FT(self, event):
         if event.button() == Qt.LeftButton and self.region_start is not None:
             # Store the ending point of the region
             self.region_end = event.pos()
-
             # Calculate the width and height of the region
             self.region_width = abs(self.region_end.x() - self.region_start.x())
             self.region_height = abs(self.region_end.y() - self.region_start.y())
-
-            # Draw the final region rectangle
+            # Clear existing regions from the scene for all FT images
+            for image_instance in Image.instances:
+                # Check if the scene is set before attempting to access items
+                if image_instance.ft_image_label.scene() is not None:
+                    for item in image_instance.ft_image_label.scene().items():
+                        if isinstance(item, QGraphicsRectItem):
+                            image_instance.ft_image_label.scene().removeItem(item)
+            # Draw the final region rectangle for the current FT image
             self.draw_region_rectangle()
+            self.all_regions.clear()
             self.all_regions.append(self.region_item.rect())
-
+            # Synchronize the regions in all FT images
+            for image_instance in Image.instances:
+                if image_instance != self:
+                    # Update the region information in other instances
+                    image_instance.region_start = self.region_start
+                    image_instance.region_end = self.region_end
+                    image_instance.region_width = self.region_width
+                    image_instance.region_height = self.region_height
+                    # Draw the synchronized region in the other FT images
+                    image_instance.draw_region_rectangle()
+                    self.all_regions.append(self.region_item.rect())
+            print(self.all_regions)
             # Reset the region variables for the next selection
             self.region_start = None
             self.region_end = None
             self.region_width = 0
             self.region_height = 0
-
             # Set region_item to None to avoid accessing it later
             self.region_item = None
-    def update_region_rectangle(self, current_pos):
-        # Update the region rectangle dynamically
-        if self.region_item is not None:
-            self.region_item.setRect(QRectF(self.region_start, current_pos))
+
     def draw_region_rectangle(self):
         if self.region_start is not None and self.region_end is not None:
-            # Create a semi-transparent red rectangle representing the selected region
-            self.region_item = QGraphicsRectItem(QRectF(self.region_start, self.region_end))
-            self.region_item.setBrush(QColor(255, 0, 0, 100))  # Red with 100 alpha (semi-transparent)
+            # Check if the scene is set for ft_image_label
+            if self.ft_image_label.scene() is not None:
+                self.region_item = QGraphicsRectItem(QRectF(self.region_start, self.region_end))
+                # Set the brush color for the region
+                self.region_item.setBrush(QColor(255, 0, 0, 100))  # Red with 100 alpha (semi-transparent)
+                # Add the region_item to the scene
+                self.ft_image_label.scene().addItem(self.region_item)
 
-            # Add the region_item to the scene
-            self.ft_image_label.scene().addItem(self.region_item)
+    def calculate_brightness_contrast(self, cv_image):
+            result=None
+            if cv_image is not None:
+                result = cv2.addWeighted(cv_image, self.contrast_coef, np.zeros_like(cv_image), 0, self.brightness_coef)
+                self.image = result
+            return result
 
-    def check_combo(self, index):
-        if index not in self.calculated:
-            self.Calculations(index)
-        selected_combo = self.combos[index].currentText()
-        if selected_combo in self.ft_components[index]:
-            selected_component = self.ft_components[index][selected_combo]
-            self.update_ft_display(selected_component)
+    def mousePressEvent_origional(self, event):
+        if event.button() == Qt.LeftButton:
+            self.image_label.mousePressPosition = event.pos()
+            if self.image is not None:
+                self.original_image = self.image.copy()
+        elif event.button() == Qt.MiddleButton:
+            # Reset to default brightness and contrast
+            self.delta_y = 0.0
+            self.delta_x = 0.0
+            # Store a copy of the original image
+
+    def mouseMoveEvent_origional(self, event):
+        if event.buttons() == Qt.LeftButton and Qt.MiddleButton:
+            delta_x = event.pos().x() - self.image_label.mousePressPosition.x()
+            delta_y = event.pos().y() - self.image_label.mousePressPosition.y()
+            # Check if the image has been modified; if yes, revert to the original
+            if self.image is not None and np.array_equal(self.image, self.original_image):
+                self.image = self.original_image.copy()
+            self.delta_y = delta_y
+            self.delta_x = delta_x
+
+    def mouseReleaseEvent_origional(self, event):
+        if event.button() == Qt.LeftButton:
+            result = None
+            self.contrast_coef = (-self.delta_y + 100) * 0.01
+            self.brightness_coef = self.delta_x * 0.01
+            result = self.calculate_brightness_contrast(self.image)
+            self.update_display(result)
 

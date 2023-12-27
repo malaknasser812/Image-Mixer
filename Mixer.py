@@ -17,64 +17,22 @@ from PyQt5.QtGui import QImage, QPixmap
 from cmath import*
 from numpy import *
 import sys
+import cv2
 import matplotlib
 matplotlib.use('Qt5Agg')
+from PyQt5.QtGui import QImage, QPixmap, QPainter
+from PyQt5.QtWidgets import QGraphicsScene, QGraphicsPixmapItem
+
 from Image import Image as ig
 
 
 class MyDialog(QtWidgets.QDialog):
-    def __init__(self, outputgraphs, image, main):
-        super(MyDialog, self).__init__()
-        # Load the UI Page
-        uic.loadUi(r'mixer.ui', self)
-
-        self.outputgraphs = outputgraphs if outputgraphs is not None else []
+    def __init__(self, main, parent=None):
+        super().__init__(parent)
         self.type1 = ''
         self.type2 = 'FT Magnitude'
         self.mode= None
         self.main = main
-        print(self.main.images[0].ft_components)
-        #print (self.ft_components, 'hello')self.comp1_hslider_1.setMinimum(0)
-        self.comp1_hslider_1.setMinimum(0)
-        self.comp1_hslider_1.setMaximum(1)
-        self.comp1_hslider_1.setValue(1)
-        self.comp1_hslider_2.setMinimum(0)
-        self.comp1_hslider_2.setMaximum(1)
-        self.comp1_hslider_2.setValue(1)
-
-        self.output_channels_controlers = {
-            'Output 1': {
-                'select1 img': '',
-                'select2 img': '',
-                'slider1 val': 0,
-                'slider2 va;': 0,
-                'type1': '',
-                'type2': ''
-            },
-            'Output 2': {
-                'select1 img': '',
-                'select2 img': '',
-                'slider1 val': 0,
-                'slider2 val': 0,
-                'type1': '',
-                'type2': ''
-            }
-        }
-        
-
-
-        #select type corresponding to the radio button toggled
-        # self.mag_radioBtn_1.toggled.connect(lambda: self.select_type(1, 'FT Magnitude'))
-        # self.phase_radioBtn_1.toggled.connect(lambda: self.select_type(1, 'FT Phase'))
-        # self.real_radioBtn_1.toggled.connect(lambda: self.select_type(1, 'FT Real Component'))
-        # self.imaginary_radioBtn_1.toggled.connect(lambda: self.select_type(1, 'FT Imaginary Component'))
-        # self.mag_radioBtn_2.toggled.connect(lambda: self.select_type(2, 'FT Magnitude'))
-        # self.phase_radioBtn_2.toggled.connect(lambda: self.select_type(2, 'FT Phase'))
-        # self.real_radioBtn_2.toggled.connect(lambda: self.select_type(2, 'FT Real Component'))
-        # self.imaginary_radioBtn_2.toggled.connect(lambda: self.select_type(2, 'FT Imaginary Component'))
-
-        self.apply_btn.clicked.connect(self.pick_mix)
-
 
        
 
@@ -83,78 +41,158 @@ class MyDialog(QtWidgets.QDialog):
             self.type1 = type
         else : self.type2 = type
 
-    # def pick_mix(self): #filling the output_channels_controlers dictionary
-    #     outputgrpah = self.mixer_output_combobox.currentText()
-    #     img1,self.output_channels_controlers[outputgrpah]['select1 img'] = self.input_img_selection_combobox_1.currentIndex()
-    #     img2,self.output_channels_controlers[outputgrpah]['select2 img'] = self.input_img_selection_combobox_2.currentIndex()
-    #     slider1,self.output_channels_controlers[outputgrpah]['slider1 val'] = self.comp1_hslider_1.value()
-    #     slider2,self.output_channels_controlers[outputgrpah]['slider2 val'] = self.comp1_hslider_2.value()
-    #     self.output_channels_controlers[outputgrpah]['type1'] = self.type1
-    #     self.output_channels_controlers[outputgrpah]['type1'] = self.type2
-    #     self.mix(img1,img2,slider1,slider2)
-
-    def pick_mix(self): #filling the output_channels_controlers dictionary
-        img1 = self.input_img_selection_combobox_1.currentIndex()
-        img2 = self.input_img_selection_combobox_2.currentIndex()
-        slider1 = self.comp1_hslider_1.value()
-        slider2 = self.comp1_hslider_2.value()
-        self.type1= self.mixer_combo_1.currentText()
-        self.type2= self.mixer_combo_2.currentText()
-        # self.output_channels_controlers[outputgrpah]['type1'] = self.type1
-        # self.output_channels_controlers[outputgrpah]['type1'] = self.type2
-        self.mix(img1,img2,slider1,slider2)
-
-
-    def mix (self, img1, img2, slid1, slid2):
-        outputgraph = self.mixer_output_combobox.currentIndex()
-        first = self.get_component(img1,slid1,self.type1)
-        second= self.get_component(img2,slid2,self.type2)
-
-        if self.mode == 'mag-phase':
-            construct = np.real(np.fft.ifft2(np.multiply(first, second)))
-        if self.mode == 'real-imag':
-            construct = np.real(np.fft.ifft2(first + second))
+    def on_changed(self, mode): 
+        print('oncahnged called')  
+        slider_values = [self.main.verticalSlider.value(), self.main.verticalSlider_3.value(), self.main.verticalSlider_2.value(), self.main.verticalSlider_4.value()]
+        if self.main.mag_phase_checkbox.isChecked():
+            index = 0
+            # component_labels = ["Magnitude", "Phase"]
+        else:
+            index = 1
+            # component_labels = ["Real", "Imaginary"]
         
-        if np.max(construct) > 1.0: #normalizing
-            construct /= np.max(construct)
-        print(construct)
+        # for i, combo_box in enumerate(self.main.combos):
+        #     combo_box.setItemText(0, component_labels[0])
+        #     combo_box.setItemText(1, component_labels[1])
 
-        self.display_output(construct, outputgraph)
+        indexes = [combo_box.currentText() for combo_box in self.main.combos]
+
+        self.newimage = self.mix_2(index, *slider_values, indexes, mode)
+        cv2.imwrite('test2.jpg', self.newimage )
+        self.newimage = cv2.normalize(self.newimage, None, 0, 255, cv2.NORM_MINMAX, dtype=cv2.CV_8U)
+        outputgraph = self.main.mixer_output_combobox.currentIndex()
+
+        self.plot_image_on_label(np.real(self.newimage), outputgraph)
+
+
+
+    def mix_2(self, index, slid1, slid2, slid3, slid4, list_combo_box, mode): 
+        self.sums = {
+                "Magnitude": [],
+                "Phase": [],
+                "Real": [],
+                "Imaginary": []
+            }
+        newmag, newphase, newreal, newimag = 0, 0, 0, 0
+        # component = "Magnitude/Phase" if index == 0 else "Real/Imaginary"
+
+        value1, value2, value3, value4 = [], [], [], []
+        values = [value1, value2, value3, value4]
+        for i in range(4):
+            component = list_combo_box[i]
+            print(self.main.images[i].instances)
+            if self.main.images[i].ft_components:
+                values[i] = self.get_component(component, i, mode)
+                self.sums[component].append(values[i])
+        #print(values)
         
 
-    def display_output(self, construct, outputIndex):
-        outputgraph = self.outputgraphs[outputIndex]    
+        Mix_ratios = [slid1 / 100, slid2 / 100, slid3 / 100, slid4 / 100]
+
+        for i in range (4):
+            if self.main.images[i].ft_components:
+                if list_combo_box[i] == 'Magnitude':  # Magnitude or Real
+                    newmag += Mix_ratios[i] * values[i]
+                if list_combo_box[i] == 'Phase': # Phase or Imaginary
+                    newphase += Mix_ratios[i] * values[i]
+                if list_combo_box[i] == 'Real': 
+                    newreal += Mix_ratios[i] * values[i]
+                if list_combo_box[i] == 'Imaginary':
+                    newimag += Mix_ratios[i] * values[i]
+        if index == 0:
+            new_mixed_ft = np.multiply(newmag, np.exp(1j * newphase))
+        else:
+            new_mixed_ft = newreal + 1j * newimag
+
+        now_mixed = self.inverse_fourier(new_mixed_ft)  
+        return now_mixed
+
+
+
+    def get_component(self, component, img_index, mode):
+        #print(self.main.images[img].ft_components)
+        # self.dft_shift
+        if mode == 'nonregion':
+            out = self.main.images[img_index].ft_components_mix[component]
+        else :
+            out = self.main.images[img_index].ft_components_cropped[component]
+        return out
         
-        image_height, image_width = construct.shape[:2]
-        q_image = QImage(construct.data.tobytes(), image_width, image_height, QImage.Format_Grayscale8)
-
-        # Convert QImage to QPixmap
-        q_pixmap = QPixmap.fromImage(q_image)
-
-        # Set the QPixmap as the pixmap for your QtLabel
-        outputgraph.setPixmap(q_pixmap)
-        #self.hide()
-
-
-
-    def get_component(self, img, ratio,type)-> np.ndarray:
         
-        print(self.main.images[img].ft_components)
-
-        if type == "FT Magnitude":
-            self.mode =  'mag-phase'
-            print(self.mode,ratio)
-            return self.main.images[img].ft_components[img][type] * ratio
-        elif type == "FT Phase":
-            self.mode =  'mag-phase'
-            print(self.mode, ratio)
-            return np.exp(1j * self.main.images[img].ft_components[img][type] * ratio)
-        elif type == "FT Real":
-            self.mode = 'real-imag'
-            print(self.mode)
-            return self.main.images[img].ft_components[img][type] * ratio
-        elif type == "FT Imaginary":
-            self.mode = 'real-imag'
-            print(self.mode)
-            return 1j* self.main.images[img].ft_components[img][type] * ratio
+     
+    def inverse_fourier(self, newimage):
+        #print("Shape of newimage:", newimage.shape)  # Add this line
+        Inverse_fourier_image = np.real(np.fft.ifft2(np.fft.ifftshift(newimage)))
+        return Inverse_fourier_image
     
+
+    def plot_image_on_label(self, image, graph):
+        outputgraph = self.main.output_graphs[graph]
+
+       # Get the current QGraphicsScene associated with outputgraph
+        current_scene = outputgraph.scene()
+
+        # Check if there is a current scene
+        if current_scene:
+            # Clear the existing items in the QGraphicsScene
+            current_scene.clear()
+        else:
+            # If no scene exists, create a new QGraphicsScene
+            new_scene = QGraphicsScene()
+            outputgraph.setScene(new_scene)
+
+        clipped_image_component = np.clip(image, -255, 255).astype(np.uint8)
+        image_bytes = clipped_image_component.tobytes()
+
+        height, width = image.shape
+        bytes_per_line = width
+        q_image = QImage(image_bytes, width, height, bytes_per_line, QImage.Format_Grayscale8)
+
+        # Convert the QImage to a QPixmap
+        pixmap = QPixmap.fromImage(q_image)
+
+        # Create a QGraphicsPixmapItem
+        pixmap_item = QGraphicsPixmapItem(pixmap)
+
+        # Create a QGraphicsScene
+        scene = QGraphicsScene()
+        scene.addItem(pixmap_item)
+
+        # Set the QGraphicsScene to the QGraphicsView
+        outputgraph.setScene(scene)
+
+
+
+
+    def ExtractRegion(self):
+            mode = 'region'
+            image = self.main.images[0]
+            if (image.all_regions):
+                x_coor = image.all_regions[0].x()
+                y_coor = image.all_regions[0].y()
+                height = image.all_regions[0].height()
+                width = image.all_regions[0].width()
+
+                for i, image in enumerate(self.main.images):
+                    if image.ft_components:
+                        self.fshiftcrop = image.dft_shift
+
+                        self.mask = np.zeros_like(self.fshiftcrop)
+                        self.mask[int(y_coor):int(y_coor + height),
+                            int(x_coor):int(x_coor + width)] = 1
+
+                        # Create a mask with zeros inside rectangle region
+                        if self.main.checks[0].isChecked():
+
+                            self.fshiftcrop = self.fshiftcrop - self.fshiftcrop * self.mask
+                        
+                        else:
+                            self.fshiftcrop = self.fshiftcrop * self.mask
+
+                        
+                        cv2.imwrite('test2.jpg', np.real(np.fft.ifft2(np.fft.ifftshift(self.fshiftcrop))))
+                        #print('masssking',self.mask)    
+                        
+                        # image.dft_shift = self.fshiftcopy
+                        image.Calculations(i,self.fshiftcrop )
+                self.on_changed(mode)
