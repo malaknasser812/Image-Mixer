@@ -26,7 +26,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Create a list to store Image instances and associated QLabel objects
         self.images = [ig(graph, ft_image, combos=self.combos) for graph, ft_image in zip(image_graphs, ft_image_graphs)]
 
-        self.checks = [self.outer_checkbox_1, self.outer_checkbox_2, self.outer_checkbox_3, self.outer_checkbox_4]
+        # self.checks = [self.outer_checkbox_1, self.outer_checkbox_2, self.outer_checkbox_3, self.outer_checkbox_4]
         # Connections
         # Connect combobox signals to the corresponding check_combo method
         

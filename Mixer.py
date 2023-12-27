@@ -62,7 +62,7 @@ class MyDialog(QtWidgets.QDialog):
         self.newimage = cv2.normalize(self.newimage, None, 0, 255, cv2.NORM_MINMAX, dtype=cv2.CV_8U)
         outputgraph = self.main.mixer_output_combobox.currentIndex()
 
-        self.plot_image_on_label(np.real(self.newimage), outputgraph)
+        self.plot_image(np.real(self.newimage), outputgraph)
 
 
 
@@ -141,7 +141,7 @@ class MyDialog(QtWidgets.QDialog):
             new_scene = QGraphicsScene()
             outputgraph.setScene(new_scene)
 
-        clipped_image_component = np.clip(image, -255, 255).astype(np.uint8)
+        clipped_image_component = np.clip(image, 0, 255).astype(np.uint8)
         image_bytes = clipped_image_component.tobytes()
 
         height, width = image.shape
@@ -160,6 +160,27 @@ class MyDialog(QtWidgets.QDialog):
 
         # Set the QGraphicsScene to the QGraphicsView
         outputgraph.setScene(scene)
+
+
+
+    def plot_image(self, image, graph):
+            outputgraph = self.main.output_graphs[graph]
+            image = cv2.imread(r'test2.jpg')
+            height, width, channel = image.shape
+            bytes_per_line = 3 * width
+
+            q_image = QImage(image.data, width, height, bytes_per_line, QImage.Format_RGB888)
+
+            # Convert QImage to QPixmap
+            pixmap = QPixmap.fromImage(q_image)
+
+            # Create a QGraphicsPixmapItem
+            pixmap_item = QGraphicsPixmapItem(pixmap)
+
+            # Create a QGraphicsScene
+            scene = QGraphicsScene()
+            scene.addItem(pixmap_item)
+            outputgraph.setScene(scene)
 
 
 
@@ -182,7 +203,7 @@ class MyDialog(QtWidgets.QDialog):
                             int(x_coor):int(x_coor + width)] = 1
 
                         # Create a mask with zeros inside rectangle region
-                        if self.main.checks[0].isChecked():
+                        if self.main.outer_checkbox_1.isChecked():
 
                             self.fshiftcrop = self.fshiftcrop - self.fshiftcrop * self.mask
                         
